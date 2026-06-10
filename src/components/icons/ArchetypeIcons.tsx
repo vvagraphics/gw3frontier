@@ -5,8 +5,70 @@ import { useSearchParams } from "next/navigation";
 import { useBuildStorage, SavedBuild } from "@/hooks/useBuildStorage";
 
 // ==========================================
+// Speculative AAA Action-Combat Data Models
+// ==========================================
+
+const ARCHETYPES = [
+  { 
+    id: "vanguard", 
+    name: "Ironclad Vanguard", 
+    color: "text-guardian-light", 
+    border: "border-guardian-light/30",
+    bg: "bg-guardian-light/10",
+    desc: "Heavy plate-armored combatants focusing on high-commitment poise, crowd control, and front-line momentum preservation." 
+  },
+  { 
+    id: "aetherweaver", 
+    name: "Aetherweaver", 
+    color: "text-mesmer-neon", 
+    border: "border-mesmer-neon/30",
+    bg: "bg-mesmer-neon/10",
+    desc: "Tactical spellcasters shifting environmental ley-lines into explosive fluid fields and instantaneous spatial phase teleports." 
+  },
+  { 
+    id: "wayfinder", 
+    name: "Frontier Wayfinder", 
+    color: "text-jade-tech", 
+    border: "border-jade-tech/30",
+    bg: "bg-jade-tech/10",
+    desc: "Highly mobile marksmen utilizing specialized tracking arrays, traversal zip-tethers, and range-to-melee momentum transitions." 
+  },
+  { 
+    id: "stalker", 
+    name: "Umbral Stalker", 
+    color: "text-purple-400", 
+    border: "border-purple-400/30",
+    bg: "bg-purple-400/10",
+    desc: "Hooded high-APM executioners who scale attack speeds via rapid lateral dodging and shadow-slip strike patterns." 
+  }
+];
+
+const KINETIC_STANCES = [
+  { id: "posture_vanguard", name: "Vanguard Posture", desc: "Builds momentum upon parrying and blocking attacks. Grants hyper-armor." },
+  { id: "stance_seeker", name: "Seeker Stance", desc: "Builds momentum dynamically through continuous movement, sprints, and aerial wall-runs." }
+];
+
+// Collected Active Skills (Mapped to Q, E, R, F hotkeys)
+const ACTIVE_SKILLS = [
+  { id: "act_1", name: "Kinetic Vault", desc: "Launches forward into the air, converting velocity into a heavy downward strike.", type: "Strike", cost: 15 },
+  { id: "act_2", name: "Vaelwarden's Grasp", desc: "Fires a grappling hook line that pulls you instantly toward targets or surfaces.", type: "Mobility", cost: 10 },
+  { id: "act_3", name: "Arah's Judgment", desc: "A massive horizontal blade wave. Structural damage scales directly with your movement speed.", type: "Strike", cost: 25 },
+  { id: "act_4", name: "Inertial Slide", desc: "Slide along the ground while executing a continuous defensive weapon deflecting parry.", type: "Defense", cost: 20 },
+  { id: "act_5", name: "Ley-Line Funnel", desc: "Absorbs local kinetic shockwaves to instantly reset all active mobility cooldowns.", type: "Utility", cost: 30 }
+];
+
+// Momentum Runes (Passives triggered by high-speed motion states)
+const MOMENTUM_RUNES = [
+  { id: "rn_1", name: "Inertial Clone", desc: "Executing a perfect dodge above 50% momentum leaves a shattering holographic decoy behind." },
+  { id: "rn_2", name: "Kinetic Friction", desc: "Sprinting for more than 2 seconds ignites the ground, leaving a lethal trailing ring of fire." },
+  { id: "rn_3", name: "Apex Acceleration", desc: "At 100% full momentum capacity, your next structural strike skill deals double raw damage." },
+  { id: "rn_4", name: "Seeker Synchronizer", desc: "Reduces mount transition durations by half when activated while moving at maximum movement velocity." }
+];
+
+// ==========================================
 // Embedded Vector Archetype SVG Library
 // ==========================================
+
 const ArchetypeIcon = ({ id, className = "w-5 h-5" }: { id: string; className?: string }) => {
   switch (id) {
     case "vanguard":
@@ -45,77 +107,24 @@ const ArchetypeIcon = ({ id, className = "w-5 h-5" }: { id: string; className?: 
 };
 
 // ==========================================
-// Speculative AAA Action-Combat Data Models
-// ==========================================
-const ARCHETYPES = [
-  { id: "vanguard", name: "Ironclad Vanguard", color: "text-guardian-light", border: "border-guardian-light/30", bg: "bg-guardian-light/10", desc: "Heavy plate-armored combatants focusing on high-commitment poise, crowd control, and front-line momentum preservation." },
-  { id: "aetherweaver", name: "Aetherweaver", color: "text-mesmer-neon", border: "border-mesmer-neon/30", bg: "bg-mesmer-neon/10", desc: "Tactical spellcasters shifting environmental ley-lines into explosive fluid fields and instantaneous spatial phase teleports." },
-  { id: "wayfinder", name: "Frontier Wayfinder", color: "text-jade-tech", border: "border-jade-tech/30", bg: "bg-jade-tech/10", desc: "Highly mobile marksmen utilizing specialized tracking arrays, traversal zip-tethers, and range-to-melee momentum transitions." },
-  { id: "stalker", name: "Umbral Stalker", color: "text-purple-400", border: "border-purple-400/30", bg: "bg-purple-400/10", desc: "Hooded high-APM executioners who scale attack speeds via rapid lateral dodging and shadow-slip strike patterns." }
-];
-
-const KINETIC_STANCES = [
-  { id: "stance_heavy", name: "Vanguard Posture", desc: "Builds momentum upon parrying and blocking attacks. Grants hyper-armor." },
-  { id: "stance_agile", name: "Seeker Stance", desc: "Builds momentum dynamically through continuous movement, sprints, and aerial wall-runs." }
-];
-
-// Archetype-Bound Skills
-const ACTIVE_SKILLS = [
-  // Vanguard Skills
-  { id: "act_van_1", archetype: "vanguard", name: "Kinetic Vault", desc: "Launches forward into the air, converting velocity into a heavy downward strike.", type: "Strike", cost: 15 },
-  { id: "act_van_2", archetype: "vanguard", name: "Arah's Judgment", desc: "A massive horizontal blade wave. Structural damage scales with movement speed.", type: "Strike", cost: 25 },
-  { id: "act_van_3", archetype: "vanguard", name: "Inertial Slide", desc: "Slide along the ground while executing a continuous defensive weapon deflecting parry.", type: "Defense", cost: 20 },
-  // Aetherweaver Skills
-  { id: "act_aet_1", archetype: "aetherweaver", name: "Ley-Line Funnel", desc: "Absorbs local kinetic shockwaves to instantly reset all active mobility cooldowns.", type: "Utility", cost: 30 },
-  { id: "act_aet_2", archetype: "aetherweaver", name: "Phase Retreat", desc: "Instantaneous backward teleport leaving a spatial distortion field.", type: "Mobility", cost: 10 },
-  { id: "act_aet_3", archetype: "aetherweaver", name: "Chaos Vortex", desc: "Deploys a localized gravity well that pulls enemies into its center.", type: "Control", cost: 25 },
-  // Wayfinder Skills
-  { id: "act_way_1", archetype: "wayfinder", name: "Vaelwarden's Grasp", desc: "Fires a grappling hook line that pulls you instantly toward targets or surfaces.", type: "Mobility", cost: 10 },
-  { id: "act_way_2", archetype: "wayfinder", name: "Apex Shot", desc: "Locks onto a target while mid-air to deliver a highly accurate piercing bolt.", type: "Strike", cost: 15 },
-  // Stalker Skills
-  { id: "act_sta_1", archetype: "stalker", name: "Shadow-Slip", desc: "Dash laterally through an enemy, executing a strike from behind.", type: "Strike", cost: 10 },
-  { id: "act_sta_2", archetype: "stalker", name: "Umbral Cascade", desc: "Unleash a flurry of strikes that accelerate in speed with each successful hit.", type: "Strike", cost: 20 }
-];
-
-// Archetype-Bound Runes
-const MOMENTUM_RUNES = [
-  // Vanguard Runes
-  { id: "rn_van_1", archetype: "vanguard", name: "Apex Acceleration", desc: "At 100% full momentum capacity, your next structural strike skill deals double raw damage." },
-  { id: "rn_van_2", archetype: "vanguard", name: "Bulwark Protocol", desc: "Taking damage at full momentum automatically triggers an aegis shield." },
-  // Aetherweaver Runes
-  { id: "rn_aet_1", archetype: "aetherweaver", name: "Inertial Clone", desc: "Executing a perfect dodge above 50% momentum leaves a shattering holographic decoy behind." },
-  { id: "rn_aet_2", archetype: "aetherweaver", name: "Aetheric Feedback", desc: "Teleporting grants brief invulnerability and restores a portion of your momentum." },
-  // Wayfinder Runes
-  { id: "rn_way_1", archetype: "wayfinder", name: "Kinetic Friction", desc: "Sprinting for more than 2 seconds ignites the ground, leaving a lethal trailing ring of fire." },
-  { id: "rn_way_2", archetype: "wayfinder", name: "Seeker Synchronizer", desc: "Reduces mount transition durations by half when activated while moving at maximum movement velocity." },
-  // Stalker Runes
-  { id: "rn_sta_1", archetype: "stalker", name: "Assassin's Momentum", desc: "Critical hits permanently increase your base movement speed until you are struck." },
-  { id: "rn_sta_2", archetype: "stalker", name: "Shadow-Dance", desc: "Executing an active skill from behind the target resets its cooldown if momentum is maxed." }
-];
-
-// ==========================================
 // Operational Matrix Core Component
 // ==========================================
+
 function BuildCrafterContent() {
   const searchParams = useSearchParams();
   const { savedBuilds, saveBuild, deleteBuild } = useBuildStorage();
 
+  // Active matrix configuration variables
   const [buildName, setBuildName] = useState("");
   const [selectedArchetype, setSelectedArchetype] = useState("vanguard");
-  const [selectedStance, setSelectedStance] = useState("stance_heavy");
+  const [selectedStance, setSelectedStance] = useState("posture_vanguard");
   const [activeDeck, setActiveDeck] = useState<string[]>(Array(4).fill("")); 
   const [activeRunes, setActiveRunes] = useState<string[]>(Array(3).fill("")); 
   
   const [selectingSlot, setSelectingSlot] = useState<{ type: "deck" | "rune"; index: number } | null>(null);
   const [shareLink, setShareLink] = useState("");
 
-  // Handle Archetype Swaps (Clears sockets to prevent invalid skills)
-  const handleArchetypeChange = (newArchetype: string) => {
-    setSelectedArchetype(newArchetype);
-    setActiveDeck(Array(4).fill(""));
-    setActiveRunes(Array(3).fill(""));
-  };
-
+  // Hydrate configurations from base64 URL query string parameter tokens
   useEffect(() => {
     const code = searchParams.get("code");
     if (code) {
@@ -167,6 +176,7 @@ function BuildCrafterContent() {
   const loadLocalBuildIntoWorkspace = (build: SavedBuild) => {
     setBuildName(build.name);
     setSelectedArchetype(build.profession);
+    // Dynamic structural extraction handling stance versus active modules indices mapping
     if (build.skills && build.skills.length > 0) {
       setSelectedStance(build.skills[0]);
       setActiveDeck([build.skills[1] || "", build.skills[2] || "", build.skills[3] || "", build.skills[4] || ""]);
@@ -177,8 +187,12 @@ function BuildCrafterContent() {
   };
 
   const currentMeta = ARCHETYPES.find(p => p.id === selectedArchetype) || ARCHETYPES[0];
-  const availableSkills = ACTIVE_SKILLS.filter(s => s.archetype === selectedArchetype);
-  const availableRunes = MOMENTUM_RUNES.filter(r => r.archetype === selectedArchetype);
+
+  // Run telemetry metric logic tracking current active configurations weight loads
+  const currentKineticLoad = activeDeck.reduce((acc, id) => {
+    const skill = ACTIVE_SKILLS.find(s => s.id === id);
+    return acc + (skill?.cost || 0);
+  }, 0);
 
   return (
     <div className="space-y-8 py-4 max-w-7xl mx-auto">
@@ -238,7 +252,7 @@ function BuildCrafterContent() {
                   </div>
                   <select 
                     value={selectedArchetype}
-                    onChange={(e) => handleArchetypeChange(e.target.value)}
+                    onChange={(e) => setSelectedArchetype(e.target.value)}
                     className="w-full bg-black/50 border border-gray-800 p-3 pl-10 rounded text-sm text-white font-mono outline-none appearance-none cursor-pointer"
                   >
                     {ARCHETYPES.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
@@ -281,7 +295,7 @@ function BuildCrafterContent() {
                       <div 
                         key={idx}
                         onClick={() => setSelectingSlot({ type: "deck", index: idx })}
-                        className={`h-[120px] border rounded-lg cursor-pointer flex flex-col p-3 justify-between transition-all relative group select-none ${
+                        className={`h-24 border rounded-lg cursor-pointer flex flex-col p-3 justify-between transition-all relative group select-none ${
                           isTargeted 
                             ? "border-white bg-white/10 shadow-[0_0_12px_rgba(255,255,255,0.1)]" 
                             : skill ? `${currentMeta.border} bg-black/60 hover:border-white/40` : "border-gray-800 bg-black/30 hover:border-gray-600"
@@ -290,11 +304,9 @@ function BuildCrafterContent() {
                         <span className="absolute top-2 right-2 text-[10px] font-black text-gray-700 tracking-widest font-mono group-hover:text-white/40 transition-colors">{hotkeys[idx]}</span>
                         {skill ? (
                           <>
-                            <div className="flex flex-col gap-1 pr-4">
-                              {/* DYNAMIC AVIF IMAGE LOADER */}
-                              <img src={`/images/skills/${skill.id}.avif`} alt={skill.name} className="w-8 h-8 rounded border border-gray-700 object-cover" />
-                              <h4 className="text-xs font-bold text-white leading-tight uppercase tracking-wider truncate mt-1">{skill.name}</h4>
-                              <p className="text-[9px] text-gray-500 font-mono uppercase">{skill.type}</p>
+                            <div className="pr-6">
+                              <h4 className="text-xs font-bold text-white leading-tight uppercase tracking-wider truncate">{skill.name}</h4>
+                              <p className="text-[9px] text-gray-500 font-mono uppercase mt-0.5">{skill.type}</p>
                             </div>
                             <span className="text-[9px] font-mono text-gray-500">LOAD: {skill.cost} Kv</span>
                           </>
@@ -328,15 +340,10 @@ function BuildCrafterContent() {
                             : rune ? "border-gray-700 bg-black/60 hover:border-gray-500" : "border-gray-800 bg-black/30 hover:border-gray-600"
                         }`}
                       >
-                        <div className={`w-10 h-10 rounded-md border text-[10px] font-mono flex items-center justify-center shrink-0 overflow-hidden transition-colors ${
-                          rune ? "border-gray-600" : "border-gray-800 text-gray-600 bg-black"
+                        <div className={`w-8 h-8 rounded-md border text-[10px] font-mono flex items-center justify-center shrink-0 transition-colors ${
+                          rune ? "border-gray-600 text-gray-400 bg-black" : "border-gray-800 text-gray-600"
                         }`}>
-                          {/* DYNAMIC AVIF IMAGE LOADER */}
-                          {rune ? (
-                            <img src={`/images/skills/${rune.id}.avif`} alt={rune.name} className="w-full h-full object-cover" />
-                          ) : (
-                            `M${idx + 1}`
-                          )}
+                          M{idx + 1}
                         </div>
                         {rune ? (
                           <div className="min-w-0 flex-1">
@@ -358,32 +365,24 @@ function BuildCrafterContent() {
               <div className="p-4 bg-black border border-gray-800 rounded-lg space-y-3 animate-fadeIn">
                 <div className="flex justify-between items-center border-b border-gray-800 pb-2 shrink-0">
                   <h4 className="text-xs font-mono font-bold text-white uppercase tracking-wider">
-                    Selecting {currentMeta.name} Matrix Component for Position #{selectingSlot.index + 1}
+                    Selecting Component Allocation Matrix for Position #{selectingSlot.index + 1}
                   </h4>
                   <button onClick={() => setSelectingSlot(null)} className="text-xs text-gray-500 hover:text-white uppercase font-mono shrink-0">Cancel</button>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-48 overflow-y-auto custom-scrollbar pr-2">
-                  {(selectingSlot.type === "deck" ? availableSkills : availableRunes).map(item => (
+                  {(selectingSlot.type === "deck" ? ACTIVE_SKILLS : MOMENTUM_RUNES).map(item => (
                     <div 
                       key={item.id}
                       onClick={() => handleSelectModule(item.id)}
-                      className="p-3 bg-gray-900/40 rounded border border-gray-800 hover:border-white transition-all cursor-pointer flex gap-3 items-start"
+                      className="p-3 bg-gray-900/40 rounded border border-gray-800 hover:border-white transition-all cursor-pointer flex flex-col justify-between"
                     >
-                      <img src={`/images/skills/${item.id}.avif`} alt={item.name} className={`w-10 h-10 object-cover border border-gray-700 shrink-0 ${selectingSlot.type === 'deck' ? 'rounded' : 'rounded-full'}`} />
-                      <div className="flex flex-col justify-between h-full w-full">
-                        <h5 className="text-xs font-bold text-white uppercase tracking-wide">{item.name}</h5>
-                        <p className="text-[11px] text-gray-400 mt-1 font-mono leading-relaxed line-clamp-2">{item.desc}</p>
-                        {"cost" in item && (
-                          <span className="text-[9px] font-mono text-gray-500 mt-2 block">CAPACITY LOAD: {item.cost} Kv</span>
-                        )}
-                      </div>
+                      <h5 className="text-xs font-bold text-white uppercase tracking-wide">{item.name}</h5>
+                      <p className="text-[11px] text-gray-400 mt-1 font-mono leading-relaxed line-clamp-2">{item.desc}</p>
+                      {"cost" in item && (
+                        <span className="text-[9px] font-mono text-gray-500 mt-2">CAPACITY LOAD: {item.cost} Kv</span>
+                      )}
                     </div>
                   ))}
-                  {(selectingSlot.type === "deck" ? availableSkills : availableRunes).length === 0 && (
-                     <div className="col-span-2 text-center text-gray-500 text-xs py-4 font-mono">
-                        No localized files found for this archetype payload.
-                     </div>
-                  )}
                 </div>
               </div>
             )}
