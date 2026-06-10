@@ -1,24 +1,58 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Shangri-La VRMMO Deep Backgrounds */
+  --color-void-dark: #05050a;
+  --color-panel-glass: rgba(15, 20, 30, 0.65);
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Tyrian Neon Accents */
+  --color-mesmer-neon: #d946ef; /* Bright Fuchsia */
+  --color-guardian-light: #38bdf8; /* Piercing Cyan */
+  --color-jade-tech: #05ff00; /* Kinetic Green */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* UI Borders */
+  --color-border-tech: rgba(56, 189, 248, 0.25);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-void-dark);
+  color: white;
+}
+
+/* Custom Scrollbar for the VRMMO feel */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-border-tech);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-mesmer-neon);
+}
+
+/* SLF Floating Glass Panel Utility */
+@utility panel-slf {
+  background-color: var(--color-panel-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border-tech);
+  box-shadow:
+    inset 0 0 20px rgba(0, 0, 0, 0.5),
+    0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Wacky Anime Glitch Hover Effect */
+@utility anime-glitch-hover {
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  &:hover {
+    transform: skewX(-2deg) scale(1.01);
+    box-shadow:
+      -3px 0 0 var(--color-mesmer-neon),
+      3px 0 0 var(--color-jade-tech);
+    border-color: var(--color-mesmer-neon);
+  }
 }
