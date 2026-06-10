@@ -19,6 +19,7 @@ export default function PublicLayout({
   <Link href="/" className="hover:text-cyberNeon transition-colors">GW3 Intel</Link>
   <Link href="/build-crafter" className="hover:text-cyberNeon transition-colors">Build Crafter</Link>
   <Link href="/tactical-map" className="hover:text-cyberNeon transition-colors">Tactical Map</Link>
+  <Link href="/podcast" className="hover:text-cyberNeon transition-colors hover:text-mesmer-neon">Comms Array</Link>
 </nav>
           </div>
           <div>

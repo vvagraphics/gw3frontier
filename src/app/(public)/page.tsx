@@ -1,6 +1,9 @@
+// src/app/(public)/page.tsx
 import React from "react";
 import fs from "fs";
 import path from "path";
+// Import the new Client Mini Player
+import PodcastMiniPlayer from "@/components/PodcastMiniPlayer";
 
 interface NewsItem {
   title: string;
@@ -24,18 +27,16 @@ export default function HomePage() {
     <div className="space-y-16 py-4">
       {/* 1. HERO SECTION (With Official Logo) */}
       <section className="relative text-center py-12 md:py-16 max-w-4xl mx-auto space-y-8 flex flex-col items-center">
-        {/* Background Mesh Glow */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-mesmer-neon/15 via-transparent to-transparent -z-10 blur-3xl pointer-events-none"></div>
         
         <div className="inline-block px-4 py-1.5 text-xs font-bold uppercase tracking-widest bg-jade-tech/10 text-jade-tech rounded-none border-l-4 border-jade-tech anime-glitch-hover">
           System Link // Tyria Server
         </div>
 
-        {/* Logo Container (White background to support the "LightBG" logo asset) */}
         <div className="relative p-8 bg-white rounded-xl shadow-[0_0_40px_rgba(255,255,255,0.15)] anime-glitch-hover w-full max-w-lg border border-gray-300">
           <div className="absolute -top-2 -right-2 w-4 h-4 bg-mesmer-neon border border-black rounded-sm animate-pulse"></div>
           <img 
-            src="/images/gw3-logo-lightbg.png" 
+            src="/images/gw3-logo-darkbg.png" 
             alt="Guild Wars 3 Official Logo" 
             className="w-full object-contain"
           />
@@ -77,31 +78,13 @@ export default function HomePage() {
             <h3 className="text-xl font-bold text-white tracking-wide">Guild Wars 3 Announcement REWIND</h3>
           </div>
 
-          {/* Podcast Placeholder */}
-          <div className="panel-slf p-5 rounded-xl space-y-4 flex flex-col anime-glitch-hover">
-            <div className="flex justify-between items-center">
-              <span className="text-xs font-mono text-gray-400">AUDIO LOGS // PODCAST</span>
-              <span className="text-[10px] bg-guardian-light/20 text-guardian-light border border-guardian-light/30 px-2 py-1 rounded font-bold tracking-widest uppercase">Initializing</span>
-            </div>
-            
-            <div className="grow bg-black/40 rounded border border-dashed border-gray-700 flex flex-col items-center justify-center p-6 text-center gap-4 group hover:border-mesmer-neon/50 transition-colors">
-              <div className="w-16 h-16 rounded-full border-2 border-gray-600 flex items-center justify-center group-hover:border-mesmer-neon group-hover:text-mesmer-neon transition-colors">
-                 <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                </svg>
-              </div>
-              <div>
-                <h4 className="text-gray-300 font-bold mb-1">Audio Transmissions Offline</h4>
-                <p className="text-xs text-gray-500 font-mono">Awaiting syndicated RSS audio feed connection. Standing by for initial episode upload.</p>
-              </div>
-            </div>
-          </div>
+          {/* Clean Swap Applied: Replaced static card with operational MiniPlayer */}
+          <PodcastMiniPlayer />
         </div>
       </section>
 
       {/* 3. DATA ARCHITECTURE (The Scraper & Tools) */}
       <section className="grid md:grid-cols-2 gap-8 pt-8">
-        {/* Left Column: Live Java Scraper Feed */}
         <div className="panel-slf p-6 rounded-xl space-y-4 anime-glitch-hover">
           <div className="flex items-center justify-between border-b border-gray-800 pb-3">
             <h2 className="text-xl font-black text-white italic tracking-wide uppercase">LIVE TRANSMISSIONS</h2>
@@ -142,7 +125,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Right Column: Platform Status / Feature Modules */}
         <div className="panel-slf p-6 rounded-xl space-y-4 anime-glitch-hover">
           <div className="border-b border-gray-800 pb-3">
             <h2 className="text-xl font-black text-white italic tracking-wide uppercase">ECOSYSTEM MODULES</h2>
