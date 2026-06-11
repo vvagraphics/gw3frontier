@@ -281,7 +281,7 @@ function BuildCrafterContent() {
                       <div 
                         key={idx}
                         onClick={() => setSelectingSlot({ type: "deck", index: idx })}
-                        className={`h-[120px] border rounded-lg cursor-pointer flex flex-col p-3 justify-between transition-all relative group select-none ${
+                        className={`h-120px border rounded-lg cursor-pointer flex flex-col p-3 justify-between transition-all relative group select-none ${
                           isTargeted 
                             ? "border-white bg-white/10 shadow-[0_0_12px_rgba(255,255,255,0.1)]" 
                             : skill ? `${currentMeta.border} bg-black/60 hover:border-white/40` : "border-gray-800 bg-black/30 hover:border-gray-600"
@@ -374,7 +374,7 @@ function BuildCrafterContent() {
                         <h5 className="text-xs font-bold text-white uppercase tracking-wide">{item.name}</h5>
                         <p className="text-[11px] text-gray-400 mt-1 font-mono leading-relaxed line-clamp-2">{item.desc}</p>
                         {"cost" in item && (
-                          <span className="text-[9px] font-mono text-gray-500 mt-2 block">CAPACITY LOAD: {item.cost} Kv</span>
+                          <span className="text-[9px] font-mono text-gray-500 mt-2 block">CAPACITY LOAD: {String(item.cost)} Kv</span>
                         )}
                       </div>
                     </div>

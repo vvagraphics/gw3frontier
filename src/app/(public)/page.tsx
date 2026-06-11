@@ -130,7 +130,7 @@ export default function HomePage() {
               <span className="text-[10px] text-gray-600 font-mono uppercase tracking-widest">Sponsored Link</span>
             </div>
             {/* Insert your actual AdSense or NitroPay script here */}
-            <div className="w-full h-[250px] bg-gray-900 border border-gray-800 rounded flex flex-col items-center justify-center text-gray-700 font-mono text-sm">
+            <div className="w-full h-250px bg-gray-900 border border-gray-800 rounded flex flex-col items-center justify-center text-gray-700 font-mono text-sm">
               <span className="mb-2">AD SPACE // 300x250</span>
               <span className="text-[10px] text-gray-500 px-4 text-center">Your gaming ad network script injects here, safely contained within the terminal UI.</span>
             </div>
