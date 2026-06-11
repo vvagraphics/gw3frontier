@@ -189,10 +189,10 @@ function BuildCrafterContent() {
   const currentMeta = ARCHETYPES.find(p => p.id === selectedArchetype) || ARCHETYPES[0];
 
   // Run telemetry metric logic tracking current active configurations weight loads
-  const _currentKineticLoad = activeDeck.reduce((acc, id) => {
-    const skill = ACTIVE_SKILLS.find(s => s.id === id);
-    return acc + (skill?.cost || 0);
-  }, 0);
+  // const _currentKineticLoad = activeDeck.reduce((acc, id) => {
+  //   const skill = ACTIVE_SKILLS.find(s => s.id === id);
+  //   return acc + (skill?.cost || 0);
+  // }, 0);
 
   return (
     <div className="space-y-8 py-4 max-w-7xl mx-auto">
