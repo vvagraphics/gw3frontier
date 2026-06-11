@@ -1,9 +1,9 @@
-// src/app/(public)/page.tsx
 import React from "react";
 import fs from "fs";
 import path from "path";
 import PodcastMiniPlayer from "@/components/PodcastMiniPlayer";
 import EraNavigator from "@/components/EraNavigator";
+import StatusAnimation from "@/components/StatusAnimation";
 
 interface NewsItem {
   title: string;
@@ -12,9 +12,29 @@ interface NewsItem {
   source: string;
 }
 
-export default function HomePage() {
-  let newsArticles: NewsItem[] = [];
+async function fetchFeaturedMerch() {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+    const res = await fetch(`${baseUrl}/api/printful`, { cache: 'no-store' });
+    if (!res.ok) return null;
+    const rawData = await res.json();
+    const featured = rawData[0]; 
+    if (!featured) return null;
 
+    return {
+      id: String(featured.id),
+      name: String(featured.name || "Unknown Asset"),
+      imageUrl: String(featured.imageUrl || "/images/gw3-logo-darkbg.png"),
+      externalUrl: "https://gw3frontier.printful.me/"
+    };
+  } catch (err) {
+    console.error("Could not fetch featured merch for homepage:", err);
+    return null;
+  }
+}
+
+export default async function HomePage() {
+  let newsArticles: NewsItem[] = [];
   try {
     const filePath = path.join(process.cwd(), "src/lib/api/news.json");
     const fileData = fs.readFileSync(filePath, "utf8");
@@ -23,26 +43,66 @@ export default function HomePage() {
     console.error("Could not load news data file:", error);
   }
 
+  const featuredMerch = await fetchFeaturedMerch();
+
   return (
-    <div className="space-y-16 py-4">
+    // Tightened global gap to bring major blocks together smoothly
+    <div className="flex flex-col gap-4 py-0">
+      
+      {/* CHRONOLOGICAL NAVIGATOR */}
       <EraNavigator />
-      {/* 1. HERO SECTION (Unchanged) */}
-      <section className="relative text-center py-12 md:py-16 max-w-4xl mx-auto space-y-8 flex flex-col items-center">
+
+      {/* HERO SECTION WITH MAXIMUM VERTICAL COMPRESSION */}
+      <section className="relative text-center max-w-4xl mx-auto flex flex-col items-center py-0 w-full">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-mesmer-neon/15 via-transparent to-transparent -z-10 blur-3xl pointer-events-none"></div>
-        <div className="inline-block px-4 py-1.5 text-xs font-bold uppercase tracking-widest bg-jade-tech/10 text-jade-tech rounded-none border-l-4 border-jade-tech anime-glitch-hover">
-          System Link // Tyria Server
+        
+        {/* --- DYNAMIC STATUS MODULES (Zero margins to completely snap upward) --- */}
+        
+        {/* GW1 Status (Online) */}
+        <div className="status-gw1 flex-col items-center bg-black/60 border border-yellow-900/50 px-8 py-2 rounded-xl backdrop-blur-md shadow-[0_0_20px_rgba(202,138,4,0.1)] w-full max-w-sm mb-0 cursor-default">
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 bg-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
+            <span className="text-sm font-mono text-gray-300 tracking-widest uppercase">
+              Server Status: <span className="text-green-400 font-bold ml-1">Online</span>
+            </span>
+          </div>
         </div>
-        <div className="relative p-8 bg-white rounded-xl shadow-[0_0_40px_rgba(255,255,255,0.15)] anime-glitch-hover w-full max-w-lg border border-gray-300">
+
+        {/* GW2 Status (Online) */}
+        <div className="status-gw2 flex-col items-center bg-black/60 border border-red-900/50 px-8 py-2 rounded-xl backdrop-blur-md shadow-[0_0_20px_rgba(220,38,38,0.1)] w-full max-w-sm mb-0 cursor-default">
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 bg-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
+            <span className="text-sm font-mono text-gray-300 tracking-widest uppercase">
+              Server Status: <span className="text-green-400 font-bold ml-1">Online</span>
+            </span>
+          </div>
+        </div>
+
+        {/* GW3 Status (Offline/Construction) */}
+        <div className="status-gw3 flex-col items-center bg-black/60 border border-mesmer-neon/30 px-8 py-2 rounded-xl backdrop-blur-md shadow-[0_0_20px_rgba(0,255,170,0.1)] w-full max-w-sm mb-0 cursor-default anime-glitch-hover">
+          <div className="flex items-center gap-3 mb-1">
+            <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
+            <span className="text-sm font-mono text-gray-300 tracking-widest uppercase">
+              Server Status: <span className="text-red-400 font-bold ml-1">Offline</span>
+            </span>
+          </div>
+          <StatusAnimation />
+        </div>
+
+        {/* LOGO BLOCK - mt-2 forces it right below the active status container */}
+        <div className="relative p-6 bg-white/5 rounded-xl shadow-[0_0_40px_rgba(255,255,255,0.05)] anime-glitch-hover w-full max-w-lg border border-gray-800 mt-2">
           <div className="absolute -top-2 -right-2 w-4 h-4 bg-mesmer-neon border border-black rounded-sm animate-pulse"></div>
           <img src="/images/gw3-logo-darkbg.png" alt="Guild Wars 3 Official Logo" className="w-full object-contain" />
         </div>
-        <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto font-mono">
+        
+        {/* Subtitle paragraph pulled closer */}
+        <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto font-mono mt-3">
           Tracking news, analyzing momentum-based combat, and building player analytics tools for the upcoming saga in Tyria.
         </p>
       </section>
 
-      {/* 2. MEDIA HUB (Unchanged) */}
-      <section className="space-y-6">
+      {/* MEDIA HUB */}
+      <section className="space-y-4">
         <div className="flex items-center gap-4 border-b border-gray-800 pb-2">
           <h2 className="text-3xl font-black text-white italic tracking-tighter uppercase">
             GW3 <span className="text-mesmer-neon">REWIND</span>
@@ -64,15 +124,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. DATA ARCHITECTURE & MONETIZATION (Updated to 3 columns) */}
-      
-      {/* 3. DATA ARCHITECTURE & MONETIZATION (Locked Heights) */}
-      <section className="grid lg:grid-cols-3 gap-6 pt-8">
+      {/* DATA ARCHITECTURE & MONETIZATION */}
+      <section className="grid lg:grid-cols-3 gap-6">
         
         {/* Column 1: Scraper Feed */}
-        <div className="panel-slf p-6 rounded-xl flex flex-col anime-glitch-hover h-120">
+        <div className="panel-slf p-6 rounded-xl flex flex-col anime-glitch-hover h-[480px]">
           <div className="flex items-center justify-between border-b border-gray-800 pb-3 mb-4 shrink-0">
-            <h2 className="text-lg font-black text-white italic tracking-wide uppercase">GUILD WARS NEWS</h2>
+            <h2 className="text-lg font-black text-white italic tracking-wide uppercase">LIVE TRANSMISSIONS</h2>
           </div>
           <div className="space-y-3 overflow-y-auto pr-2 custom-scrollbar grow">
             {newsArticles.length === 0 ? (
@@ -91,16 +149,16 @@ export default function HomePage() {
         </div>
 
         {/* Column 2: Ecosystem Modules */}
-        <div className="panel-slf p-6 rounded-xl flex flex-col anime-glitch-hover h-120">
+        <div className="panel-slf p-6 rounded-xl flex flex-col anime-glitch-hover h-[480px]">
           <div className="border-b border-gray-800 pb-3 mb-4 shrink-0">
-            <h2 className="text-lg font-black text-white italic tracking-wide uppercase">META BUILDS</h2>
+            <h2 className="text-lg font-black text-white italic tracking-wide uppercase">ECOSYSTEM MODULES</h2>
           </div>
           <div className="space-y-3 overflow-y-auto pr-2 custom-scrollbar grow">
-            <div className="p-3 rounded bg-black/50 border border-gray-800 group hover:border-guardian-light/50 transition-colors">
+            <div className="p-3 rounded bg-black/50 border border-gray-800 group hover:border-guardian-light/50 transition-colors cursor-pointer">
               <p className="text-sm font-bold text-gray-200">Kinetic Combat Build Crafter</p>
               <p className="text-xs text-gray-500 font-mono mt-1">Modeling momentum arrays and trait distributions.</p>
             </div>
-            <div className="p-3 rounded bg-black/50 border border-gray-800 group hover:border-guardian-light/50 transition-colors">
+            <div className="p-3 rounded bg-black/50 border border-gray-800 group hover:border-guardian-light/50 transition-colors cursor-pointer">
               <p className="text-sm font-bold text-gray-200">Momentum Mini-Game</p>
               <p className="text-xs text-gray-500 font-mono mt-1">Interactive physics module mimicking Seeker mechanics.</p>
             </div>
@@ -108,25 +166,43 @@ export default function HomePage() {
         </div>
 
         {/* Column 3: Monetization (Merch & Ads) */}
-        <div className="flex flex-col gap-6 h-120">
+        <div className="flex flex-col gap-6 h-[480px]">
           
-          {/* Merch Widget */}
           <div className="panel-slf p-5 rounded-xl flex flex-col anime-glitch-hover border-jade-tech/30 flex-1">
             <div className="flex items-center justify-between border-b border-gray-800 pb-2 mb-3 shrink-0">
               <h2 className="text-sm font-black text-jade-tech italic tracking-wide uppercase flex items-center gap-2">
                 <span className="w-2 h-2 bg-jade-tech animate-pulse rounded-full"></span>
-                MERCH DROP
+                FEATURED REQUISITION
               </h2>
             </div>
-            <div className="bg-black/60 rounded border border-gray-800 p-3 text-center group cursor-pointer hover:border-jade-tech/50 transition-all grow flex flex-col justify-center items-center">
-              <p className="text-sm font-bold text-gray-200">Age of Orr Desk Mat</p>
-              <p className="text-xs text-jade-tech font-mono mt-1">Secure Loadout ↗</p>
-            </div>
             
+            {featuredMerch ? (
+              <a 
+                href={featuredMerch.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-black/60 rounded border border-gray-800 p-3 text-center group hover:border-jade-tech/50 transition-all grow flex flex-col justify-center items-center"
+              >
+                <div className="aspect-square w-full max-h-32 bg-gray-900 rounded mb-3 flex items-center justify-center overflow-hidden p-2">
+                  <img 
+                    src={featuredMerch.imageUrl} 
+                    alt={featuredMerch.name} 
+                    className="object-contain w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all" 
+                  />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-gray-200 line-clamp-1">{featuredMerch.name}</p>
+                  <p className="text-xs text-jade-tech font-mono mt-1">Acquire Asset ↗</p>
+                </div>
+              </a>
+            ) : (
+              <div className="bg-black/60 rounded border border-gray-800 p-3 text-center grow flex flex-col justify-center items-center font-mono text-gray-500 text-xs">
+                No active items on network.
+              </div>
+            )}
           </div>
 
-          {/* Styled Ad Placement */}
-          <div className="panel-slf p-4 rounded-xl flex flex-col anime-glitch-hover bg-black/80 shrink-0 h-50">
+          <div className="panel-slf p-4 rounded-xl flex flex-col anime-glitch-hover bg-black/80 shrink-0 h-[200px]">
             <div className="flex justify-between items-center mb-2 shrink-0">
               <span className="text-[10px] text-gray-600 font-mono uppercase tracking-widest">Sponsored Link</span>
             </div>
