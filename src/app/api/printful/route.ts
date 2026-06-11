@@ -18,6 +18,8 @@ export async function GET() {
     });
 
     if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Printful API Error Details:", JSON.stringify(errorData, null, 2));
       throw new Error(`Printful returned status: ${response.status}`);
     }
 
