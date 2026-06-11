@@ -46,57 +46,58 @@ export default async function HomePage() {
   const featuredMerch = await fetchFeaturedMerch();
 
   return (
-    // Tightened global gap to bring major blocks together smoothly
-    <div className="flex flex-col gap-4 py-0">
+    <div className="flex flex-col gap-6 py-0">
       
       {/* CHRONOLOGICAL NAVIGATOR */}
       <EraNavigator />
 
-      {/* HERO SECTION WITH MAXIMUM VERTICAL COMPRESSION */}
-      <section className="relative text-center max-w-4xl mx-auto flex flex-col items-center py-0 w-full">
+      {/* HERO SECTION - Framed with a clean top track separator */}
+      <section className="relative text-center max-w-4xl mx-auto flex flex-col items-center pt-4 pb-0 w-full border-t border-gray-900/40">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-mesmer-neon/15 via-transparent to-transparent -z-10 blur-3xl pointer-events-none"></div>
         
-        {/* --- DYNAMIC STATUS MODULES (Zero margins to completely snap upward) --- */}
+        {/* --- DYNAMIC STATUS MODULES --- */}
         
         {/* GW1 Status (Online) */}
-        <div className="status-gw1 flex-col items-center bg-black/60 border border-yellow-900/50 px-8 py-2 rounded-xl backdrop-blur-md shadow-[0_0_20px_rgba(202,138,4,0.1)] w-full max-w-sm mb-0 cursor-default">
+        <div className="status-gw1 flex-col items-center bg-black/60 border border-yellow-900/50 px-6 py-2 rounded-xl backdrop-blur-md shadow-[0_0_20px_rgba(202,138,4,0.1)] w-full max-w-xs mb-3 cursor-default">
           <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
-            <span className="text-sm font-mono text-gray-300 tracking-widest uppercase">
+            <div className="w-2.5 h-2.5 bg-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
+            <span className="text-xs font-mono text-gray-300 tracking-widest uppercase">
               Server Status: <span className="text-green-400 font-bold ml-1">Online</span>
             </span>
           </div>
         </div>
 
         {/* GW2 Status (Online) */}
-        <div className="status-gw2 flex-col items-center bg-black/60 border border-red-900/50 px-8 py-2 rounded-xl backdrop-blur-md shadow-[0_0_20px_rgba(220,38,38,0.1)] w-full max-w-sm mb-0 cursor-default">
+        <div className="status-gw2 flex-col items-center bg-black/60 border border-red-900/50 px-6 py-2 rounded-xl backdrop-blur-md shadow-[0_0_20px_rgba(220,38,38,0.1)] w-full max-w-xs mb-3 cursor-default">
           <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
-            <span className="text-sm font-mono text-gray-300 tracking-widest uppercase">
+            <div className="w-2.5 h-2.5 bg-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
+            <span className="text-xs font-mono text-gray-300 tracking-widest uppercase">
               Server Status: <span className="text-green-400 font-bold ml-1">Online</span>
             </span>
           </div>
         </div>
 
         {/* GW3 Status (Offline/Construction) */}
-        <div className="status-gw3 flex-col items-center bg-black/60 border border-mesmer-neon/30 px-8 py-2 rounded-xl backdrop-blur-md shadow-[0_0_20px_rgba(0,255,170,0.1)] w-full max-w-sm mb-0 cursor-default anime-glitch-hover">
+        <div className="status-gw3 flex-col items-center bg-black/60 border border-mesmer-neon/20 px-6 py-2.5 rounded-xl backdrop-blur-md shadow-[0_0_25px_rgba(0,255,170,0.05)] w-full max-w-xs mb-4 cursor-default anime-glitch-hover">
           <div className="flex items-center gap-3 mb-1">
-            <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
-            <span className="text-sm font-mono text-gray-300 tracking-widest uppercase">
+            <div className="w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
+            <span className="text-xs font-mono text-gray-300 tracking-widest uppercase">
               Server Status: <span className="text-red-400 font-bold ml-1">Offline</span>
             </span>
           </div>
-          <StatusAnimation />
+          {/* Centered animation display framework */}
+          <div className="w-full flex justify-center items-center h-16 overflow-hidden mt-1">
+            <StatusAnimation />
+          </div>
         </div>
 
-        {/* LOGO BLOCK - mt-2 forces it right below the active status container */}
-        <div className="relative p-6 bg-white/5 rounded-xl shadow-[0_0_40px_rgba(255,255,255,0.05)] anime-glitch-hover w-full max-w-lg border border-gray-800 mt-2">
-          <div className="absolute -top-2 -right-2 w-4 h-4 bg-mesmer-neon border border-black rounded-sm animate-pulse"></div>
+        {/* LOGO BLOCK */}
+        <div className="relative p-5 bg-white/5 rounded-xl shadow-[0_0_40px_rgba(255,255,255,0.03)] anime-glitch-hover w-full max-w-md border border-gray-900">
+          <div className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-mesmer-neon border border-black rounded-sm animate-pulse"></div>
           <img src="/images/gw3-logo-darkbg.png" alt="Guild Wars 3 Official Logo" className="w-full object-contain" />
         </div>
         
-        {/* Subtitle paragraph pulled closer */}
-        <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto font-mono mt-3">
+        <p className="text-gray-400 text-xs md:text-sm max-w-xl mx-auto font-mono mt-4 leading-relaxed">
           Tracking news, analyzing momentum-based combat, and building player analytics tools for the upcoming saga in Tyria.
         </p>
       </section>
@@ -104,7 +105,7 @@ export default async function HomePage() {
       {/* MEDIA HUB */}
       <section className="space-y-4">
         <div className="flex items-center gap-4 border-b border-gray-800 pb-2">
-          <h2 className="text-3xl font-black text-white italic tracking-tighter uppercase">
+          <h2 className="text-2xl font-black text-white italic tracking-tighter uppercase">
             GW3 <span className="text-mesmer-neon">REWIND</span>
           </h2>
           <div className="h-0.5 grow bg-linear-to-r from-mesmer-neon/50 to-transparent"></div>

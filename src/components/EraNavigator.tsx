@@ -24,12 +24,7 @@ export default function EraNavigator() {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto mt-2 px-4">
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Chronological Navigator</span>
-        <span className="text-[10px] font-mono text-gray-500">SYSTEM.THEME_OVERRIDE</span>
-      </div>
-      
+    <div className="w-full max-w-5xl mx-auto mt-0 px-4">
       {/* Tapestry Banner Grid */}
       <div className="grid grid-cols-3 gap-2 md:gap-4 bg-black/50 p-2 rounded-xl border border-gray-800 backdrop-blur-md">
         {ERAS.map((era) => {
@@ -38,7 +33,7 @@ export default function EraNavigator() {
             <button
               key={era.id}
               onClick={() => handleEraChange(era.id)}
-              className={`relative flex flex-col items-center justify-center py-4 px-2 rounded-lg border-2 transition-all duration-300 overflow-hidden group
+              className={`relative flex flex-col items-center justify-center py-3 px-2 rounded-lg border-2 transition-all duration-300 overflow-hidden group
                 ${isActive ? `border-gray-300 ${era.activeBg}` : `border-transparent ${era.borderHover} bg-black/40`}
               `}
             >
@@ -54,7 +49,7 @@ export default function EraNavigator() {
               <span className={`relative z-10 text-sm md:text-lg font-black italic tracking-wider transition-colors drop-shadow-md ${isActive ? "text-white" : "text-gray-200"} ${era.textHover}`}>
                 {era.title}
               </span>
-              <span className="relative z-10 text-[9px] md:text-xs font-mono text-gray-400 mt-1 uppercase tracking-widest hidden md:block">
+              <span className="relative z-10 text-[9px] md:text-xs font-mono text-gray-400 mt-0.5 uppercase tracking-widest hidden md:block">
                 {era.subtitle}
               </span>
 
@@ -66,9 +61,9 @@ export default function EraNavigator() {
         })}
       </div>
       
-      {/* Disclaimer */}
-      <div className="text-center mt-3">
-        <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest bg-black/40 px-3 py-1 rounded border border-gray-800">
+      {/* Balanced Alert Container */}
+      <div className="text-center mt-2 mb-1">
+        <span className="text-[9px] font-mono text-gray-500 uppercase tracking-widest bg-black/40 px-3 py-1 rounded border border-gray-800/60">
           ⚠️ Terminal Alert: Deep-data matrix syncing in progress. Era selection currently limited to visual override.
         </span>
       </div>
