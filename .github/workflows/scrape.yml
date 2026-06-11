@@ -1,0 +1,42 @@
+name: Daily News Scraper
+
+on:
+  schedule:
+    # Runs at 12:00 AM UTC every day
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Adds a "Run workflow" button in GitHub so you can trigger it manually
+
+permissions:
+  contents: write
+
+jobs:
+  scrape-and-update:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Build and Run Java Scraper
+      run: |
+        cd scraper
+        mvn clean compile exec:java -Dexec.mainClass="com.gw3frontier.scraper.NewsScraper"
+
+    - name: Commit and Push Changes
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        
+        # Stage the generated json file
+        git add src/lib/api/news.json
+        
+        # Check if there are actual changes before committing to avoid empty commits
+        git diff --quiet && git diff --staged --quiet || git commit -m "chore: automated daily news fetch"
+        git push
