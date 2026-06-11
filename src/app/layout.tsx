@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-// @ts-ignore: CSS module declaration not found
+// @ts-expect-error: CSS module declaration not found
 import "./globals.css";
 
 // This object controls your SEO headers. Google reads this to list your site!

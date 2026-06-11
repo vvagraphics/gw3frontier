@@ -21,7 +21,7 @@ export default function PodcastMiniPlayer() {
       .then((res) => res.json())
       .then((data) => {
         if (data && data.segments) {
-          setTranscript(data.segments.flatMap((s: any) => s.words));
+          setTranscript(data.segments.flatMap((s: { words: TranscriptWord[] }) => s.words));
         }
       })
       .catch((err) => console.error("Failed to load transcript:", err));

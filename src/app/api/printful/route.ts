@@ -27,7 +27,7 @@ export async function GET() {
     const rawProducts = data.result || [];
 
     // 2. Map Printful's data architecture into our clean theme layout structure
-    const cleanedProducts = rawProducts.map((item: any) => ({
+    const cleanedProducts = rawProducts.map((item: { id: string | number; name: string; thumbnail_url?: string; external_url?: string }) => ({
       id: String(item.id),
       name: item.name,
       // Printful storefront API provides a high-res flat thumbnail image
@@ -38,7 +38,7 @@ export async function GET() {
     }));
 
     return NextResponse.json(cleanedProducts);
-  } catch (error: any) {
+  } catch (error ) {
     console.error("Printful sync pipeline failed:", error);
     return NextResponse.json({ error: "Failed to extract active inventory streams" }, { status: 500 });
   }

@@ -189,7 +189,7 @@ function BuildCrafterContent() {
   const currentMeta = ARCHETYPES.find(p => p.id === selectedArchetype) || ARCHETYPES[0];
 
   // Run telemetry metric logic tracking current active configurations weight loads
-  const currentKineticLoad = activeDeck.reduce((acc, id) => {
+  const _currentKineticLoad = activeDeck.reduce((acc, id) => {
     const skill = ACTIVE_SKILLS.find(s => s.id === id);
     return acc + (skill?.cost || 0);
   }, 0);
@@ -379,7 +379,7 @@ function BuildCrafterContent() {
                       <h5 className="text-xs font-bold text-white uppercase tracking-wide">{item.name}</h5>
                       <p className="text-[11px] text-gray-400 mt-1 font-mono leading-relaxed line-clamp-2">{item.desc}</p>
                       {"cost" in item && (
-                        <span className="text-[9px] font-mono text-gray-500 mt-2">CAPACITY LOAD: {item.cost} Kv</span>
+                        <span className="text-[9px] font-mono text-gray-500 mt-2">CAPACITY LOAD: {String(item.cost)} Kv</span>
                       )}
                     </div>
                   ))}
