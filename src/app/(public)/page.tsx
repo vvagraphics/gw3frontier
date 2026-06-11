@@ -83,12 +83,12 @@ export default async function HomePage() {
             <div className="w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
             <span className="text-xs font-mono text-gray-300 tracking-widest uppercase">
               Server Status: <span className="text-red-400 font-bold ml-1">Offline</span>
-            </span>
-          </div>
-          {/* Centered animation display framework */}
-          <div className="w-full flex justify-center items-center h-16 overflow-hidden mt-1">
+            </span> <div className="w-full flex justify-center items-center h-16 overflow-hidden mt-1">
             <StatusAnimation />
           </div>
+          </div>
+          {/* Centered animation display framework */}
+         
         </div>
 
         {/* LOGO BLOCK */}
