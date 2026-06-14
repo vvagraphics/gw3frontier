@@ -45,6 +45,15 @@ export default async function HomePage() {
 
   const featuredMerch = await fetchFeaturedMerch();
 
+  // UPTIME CALCULATIONS
+  const today = new Date();
+  const gw1ReleaseDate = new Date("2005-04-28");
+  const gw2ReleaseDate = new Date("2012-08-28");
+  
+  // Calculate days difference
+  const gw1DaysOnline = Math.floor((today.getTime() - gw1ReleaseDate.getTime()) / (1000 * 60 * 60 * 24));
+  const gw2DaysOnline = Math.floor((today.getTime() - gw2ReleaseDate.getTime()) / (1000 * 60 * 60 * 24));
+
   return (
     <div className="flex flex-col gap-6 py-0">
       
@@ -57,42 +66,51 @@ export default async function HomePage() {
         
         {/* --- DYNAMIC STATUS MODULES --- */}
         
-        {/* GW1 Status (Online) */}
-        <div className="status-gw1 flex-col items-center bg-black/60 border border-yellow-900/50 px-6 py-2 rounded-xl backdrop-blur-md shadow-[0_0_20px_rgba(202,138,4,0.1)] w-full max-w-xs mb-3 cursor-default">
-          <div className="flex items-center gap-3">
-            <div className="w-2.5 h-2.5 bg-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
-            <span className="text-xs font-mono text-gray-300 tracking-widest uppercase">
-              Server Status: <span className="text-green-400 font-bold ml-1">Online</span>
+        {/* GW1 Status (Online) - Now a Link */}
+        <a href="https://wiki.guildwars.com/wiki/Game_status" target="_blank" rel="noopener noreferrer" className="status-gw1 flex-col items-center bg-black/60 border border-yellow-900/50 px-6 py-2 rounded-xl backdrop-blur-md shadow-[0_0_20px_rgba(202,138,4,0.1)] w-full max-w-xs mb-3 hover:border-yellow-600 transition-colors cursor-pointer group">
+          <div className="flex flex-col items-center gap-1">
+            <div className="flex items-center gap-3">
+              <div className="w-2.5 h-2.5 bg-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.8)] group-hover:animate-pulse"></div>
+              <span className="text-xs font-mono text-gray-300 tracking-widest uppercase">
+                Server Status: <span className="text-green-400 font-bold ml-1">Online</span>
+              </span>
+            </div>
+            <span className="text-[10px] text-yellow-500/80 font-mono tracking-wider">
+              Uptime: {gw1DaysOnline.toLocaleString()} Days
             </span>
           </div>
-        </div>
+        </a>
 
-        {/* GW2 Status (Online) */}
-        <div className="status-gw2 flex-col items-center bg-black/60 border border-red-900/50 px-6 py-2 rounded-xl backdrop-blur-md shadow-[0_0_20px_rgba(220,38,38,0.1)] w-full max-w-xs mb-3 cursor-default">
-          <div className="flex items-center gap-3">
-            <div className="w-2.5 h-2.5 bg-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
-            <span className="text-xs font-mono text-gray-300 tracking-widest uppercase">
-              Server Status: <span className="text-green-400 font-bold ml-1">Online</span>
+        {/* GW2 Status (Online) - Now a Link */}
+        <a href="https://en-forum.guildwars2.com/" target="_blank" rel="noopener noreferrer" className="status-gw2 flex-col items-center bg-black/60 border border-red-900/50 px-6 py-2 rounded-xl backdrop-blur-md shadow-[0_0_20px_rgba(220,38,38,0.1)] w-full max-w-xs mb-3 hover:border-red-600 transition-colors cursor-pointer group">
+          <div className="flex flex-col items-center gap-1">
+            <div className="flex items-center gap-3">
+              <div className="w-2.5 h-2.5 bg-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.8)] group-hover:animate-pulse"></div>
+              <span className="text-xs font-mono text-gray-300 tracking-widest uppercase">
+                Server Status: <span className="text-green-400 font-bold ml-1">Online</span>
+              </span>
+            </div>
+            <span className="text-[10px] text-red-500/80 font-mono tracking-wider">
+              Uptime: {gw2DaysOnline.toLocaleString()} Days
             </span>
           </div>
-        </div>
+        </a>
 
-        {/* GW3 Status (Offline/Construction) */}
-        <div className="status-gw3 flex-col items-center bg-black/60 border border-mesmer-neon/20 px-6 py-2.5 rounded-xl backdrop-blur-md shadow-[0_0_25px_rgba(0,255,170,0.05)] w-full max-w-xs mb-4 cursor-default anime-glitch-hover">
-          <div className="flex items-center gap-3 mb-1">
-            <div className="w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
+        {/* GW3 Status (Offline/Construction) - Animation moved to the right */}
+        <div className="status-gw3 flex flex-row flex-wrap md:flex-nowrap items-center justify-center md:justify-between bg-black/60 border border-mesmer-neon/20 px-6  rounded-xl backdrop-blur-md shadow-[0_0_25px_rgba(0,255,170,0.05)] w-full max-w-xs md:max-w-sm mb-4 cursor-default anime-glitch-hover gap-x-4">
+          <div className="flex items-center gap-3 mt-2 md:mt-0">
+            <div className="w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.8)] shrink-0"></div>
             <span className="text-xs font-mono text-gray-300 tracking-widest uppercase">
               Server Status: <span className="text-red-400 font-bold ml-1">Offline</span>
-            </span> <div className="w-full flex justify-center items-center h-16 overflow-hidden mt-1">
+            </span> 
+          </div>
+          <div className="flex justify-center pt-7 items-center h-16 w-16 overflow-hidden shrink-0">
             <StatusAnimation />
           </div>
-          </div>
-          {/* Centered animation display framework */}
-         
         </div>
 
         {/* LOGO BLOCK */}
-        <div className="relative p-5 bg-white/5 rounded-xl shadow-[0_0_40px_rgba(255,255,255,0.03)] anime-glitch-hover w-full max-w-md border border-gray-900">
+        <div className="relative p-5 bg-white/5 rounded-xl shadow-[0_0_40px_rgba(255,255,255,0.03)] anime-glitch-hover w-full max-w-md border border-gray-900 mt-2">
           <div className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-mesmer-neon border border-black rounded-sm animate-pulse"></div>
           <img src="/images/gw3-logo-darkbg.png" alt="Guild Wars 3 Official Logo" className="w-full object-contain" />
         </div>
@@ -129,7 +147,7 @@ export default async function HomePage() {
       <section className="grid lg:grid-cols-3 gap-6">
         
         {/* Column 1: Scraper Feed */}
-        <div className="panel-slf p-6 rounded-xl flex flex-col anime-glitch-hover h-[480px]">
+        <div className="panel-slf p-6 rounded-xl flex flex-col anime-glitch-hover h-120">
           <div className="flex items-center justify-between border-b border-gray-800 pb-3 mb-4 shrink-0">
             <h2 className="text-lg font-black text-white italic tracking-wide uppercase">LIVE TRANSMISSIONS</h2>
           </div>
@@ -150,7 +168,7 @@ export default async function HomePage() {
         </div>
 
         {/* Column 2: Ecosystem Modules */}
-        <div className="panel-slf p-6 rounded-xl flex flex-col anime-glitch-hover h-[480px]">
+        <div className="panel-slf p-6 rounded-xl flex flex-col anime-glitch-hover h-120">
           <div className="border-b border-gray-800 pb-3 mb-4 shrink-0">
             <h2 className="text-lg font-black text-white italic tracking-wide uppercase">ECOSYSTEM MODULES</h2>
           </div>
@@ -167,7 +185,7 @@ export default async function HomePage() {
         </div>
 
         {/* Column 3: Monetization (Merch & Ads) */}
-        <div className="flex flex-col gap-6 h-[480px]">
+        <div className="flex flex-col gap-6 h-120">
           
           <div className="panel-slf p-5 rounded-xl flex flex-col anime-glitch-hover border-jade-tech/30 flex-1">
             <div className="flex items-center justify-between border-b border-gray-800 pb-2 mb-3 shrink-0">
@@ -203,7 +221,7 @@ export default async function HomePage() {
             )}
           </div>
 
-          <div className="panel-slf p-4 rounded-xl flex flex-col anime-glitch-hover bg-black/80 shrink-0 h-[200px]">
+          <div className="panel-slf p-4 rounded-xl flex flex-col anime-glitch-hover bg-black/80 shrink-0 h-50">
             <div className="flex justify-between items-center mb-2 shrink-0">
               <span className="text-[10px] text-gray-600 font-mono uppercase tracking-widest">Sponsored Link</span>
             </div>
