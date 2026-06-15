@@ -2,52 +2,10 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { useAudio } from "@/context/AudioContext";
+import { PLAYLIST_MANIFEST } from "@/lib/podcastData";
 
 interface TranscriptWord { text: string; start: number; end?: number; duration?: number; }
 interface Timestamp { label: string; time: number; }
-
-interface EpisodeMeta {
-  id: string;
-  series: string;
-  episode: number;
-  title: string;
-  status: string;
-  audioUrl: string;
-  spotifyUrl?: string;
-  appleUrl?: string;
-}
-
-// Master tracking index for playlist layout
-const PLAYLIST_MANIFEST: EpisodeMeta[] = [
-  {
-    id: "frontier-01", // Maps to frontier-01.json
-    series: "GW3 Frontier",
-    episode: 1,
-    title: "Guild Wars 3 Resets the Tyrian Timeline",
-    status: "Released",
-    audioUrl: "http://mr3anderson.pro/podcast/gw3frontier/Guild_Wars_3_Resets_the_Tyrian_Timeline.m4a",
-    spotifyUrl: "https://open.spotify.com/show/033vIllxMnSMRbi8Vqvffc",
-    appleUrl: "https://podcasts.apple.com"
-  },
-  {
-    id: "frontier-02", // Maps to frontier-02.json
-    series: "GW3 Frontier",
-    episode: 2,
-    title: "Ancient Orr returns in Guild Wars 3",
-    status: "Released",
-    audioUrl: "http://mr3anderson.pro/podcast/gw3frontier/Ancient_Orr_returns_in_Guild_Wars_3.m4a",
-    spotifyUrl: "https://open.spotify.com/show/033vIllxMnSMRbi8Vqvffc",
-    appleUrl: "https://podcasts.apple.com"
-  },
-  {
-    id: "wrapup-01", // Maps to wrapup-01.json
-    series: "The Wrap-Up",
-    episode: 1,
-    title: "Launch Week Speculation Framework",
-    status: "Upcoming",
-    audioUrl: ""
-  }
-];
 
 export default function PodcastPage() {
   const { isPlaying, currentTime, duration, activeEpisode, playEpisode, seekTo } = useAudio();
@@ -60,8 +18,6 @@ export default function PodcastPage() {
   const [liveTimestamps, setLiveTimestamps] = useState<Timestamp[]>([]);
   const [liveDescription, setLiveDescription] = useState("");
   const [isUserScrolling, setIsUserScrolling] = useState(false);
-
-  
 
   const selectedEpisode = PLAYLIST_MANIFEST.find((ep) => ep.id === selectedEpisodeId) || PLAYLIST_MANIFEST[0];
 
