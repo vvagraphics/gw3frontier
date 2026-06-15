@@ -32,7 +32,7 @@ export default function PodcastMiniPlayer() {
       <div className="flex flex-col gap-3 flex-1 min-h-0 border-b border-gray-900 pb-4">
         <div className="flex justify-between items-center">
           <span className="text-[10px] font-bold text-mesmer-neon uppercase tracking-widest block">
-            Latest Transmission
+            LATEST PODCAST
           </span>
           {latestEpisode.spotifyUrl && (
             <a 
@@ -48,28 +48,45 @@ export default function PodcastMiniPlayer() {
 
         {/* Featured Play Card */}
         <div 
-          className={`flex-1 min-h-0 bg-black/60 rounded-md border ${activeEpisode?.id === latestEpisode.id ? 'border-mesmer-neon' : 'border-gray-800'} p-4 relative overflow-hidden group cursor-pointer hover:border-mesmer-neon/50 transition-all flex flex-col justify-center items-center text-center gap-4`}
-          onClick={() => handlePlayClick(latestEpisode)}
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-mesmer-neon/5 via-transparent to-transparent pointer-events-none"></div>
-          
-          <button className={`w-16 h-16 rounded-full border flex items-center justify-center transition-all shadow-[0_0_15px_rgba(217,70,239,0.15)] ${activeEpisode?.id === latestEpisode.id && isPlaying ? 'border-mesmer-neon text-black bg-mesmer-neon shadow-[0_0_20px_rgba(217,70,239,0.5)]' : 'border-mesmer-neon text-mesmer-neon group-hover:bg-mesmer-neon group-hover:text-black'}`}>
-            {activeEpisode?.id === latestEpisode.id && isPlaying ? (
-              <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-            ) : (
-              <svg className="w-8 h-8 fill-current ml-1.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            )}
-          </button>
+  className={`flex-1 min-h-0 rounded-md border ${
+    activeEpisode?.id === latestEpisode.id ? 'border-mesmer-neon' : 'border-gray-800'
+  } p-4 relative overflow-hidden group cursor-pointer hover:border-mesmer-neon/50 transition-all flex flex-col justify-center items-center text-center gap-4`}
+  style={{
+    backgroundImage: `url("https://mr3anderson.pro/podcast/gw3frontier/gw3frontier.jpg")`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  }}
+  onClick={() => handlePlayClick(latestEpisode)}
+>
+  {/* 1. Dark Fade Overlay: Ensures text pops. Adjust bg-black/60 to change darkness */}
+  <div className="absolute inset-0 bg-black/60 z-0"></div>
 
-          <div className="space-y-1 relative z-10">
-            <h3 className="text-white font-bold text-lg leading-tight group-hover:text-mesmer-neon transition-colors line-clamp-2">
-              {latestEpisode.title}
-            </h3>
-            <p className="text-[10px] text-gray-500 font-mono uppercase tracking-widest">
-              {latestEpisode.series} // EP {latestEpisode.episode}
-            </p>
-          </div>
-        </div>
+  {/* 2. Your Existing Gradient Overlay */}
+  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-mesmer-neon/5 via-transparent to-transparent pointer-events-none z-0"></div>
+  
+  {/* 3. Button Container: Added relative and z-10 to ensure it stays on top */}
+  <button className={`relative z-10 w-16 h-16 rounded-full border flex items-center justify-center transition-all shadow-[0_0_15px_rgba(217,70,239,0.15)] ${
+    activeEpisode?.id === latestEpisode.id && isPlaying 
+      ? 'border-mesmer-neon text-black bg-mesmer-neon shadow-[0_0_20px_rgba(217,70,239,0.5)]' 
+      : 'border-mesmer-neon text-mesmer-neon group-hover:bg-mesmer-neon group-hover:text-black'
+  }`}>
+    {activeEpisode?.id === latestEpisode.id && isPlaying ? (
+      <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    ) : (
+      <svg className="w-8 h-8 fill-current " viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    )}
+  </button>
+
+  {/* 4. Text Content: Added relative and z-10 */}
+  <div className="space-y-1 relative z-10">
+    <h3 className="text-white font-bold text-lg leading-tight group-hover:text-mesmer-neon transition-colors line-clamp-2">
+      {latestEpisode.title}
+    </h3>
+    <p className="text-[10px] text-gray-500 font-mono uppercase tracking-widest">
+      {latestEpisode.series} // EP {latestEpisode.episode}
+    </p>
+  </div>
+</div>
       </div>
 
       {/* EPISODE PICKER LIST (Scrollable for older episodes) */}

@@ -149,7 +149,7 @@ export default async function HomePage() {
         {/* Column 1: Scraper Feed */}
         <div className="panel-slf p-6 rounded-xl flex flex-col anime-glitch-hover h-120">
           <div className="flex items-center justify-between border-b border-gray-800 pb-3 mb-4 shrink-0">
-            <h2 className="text-lg font-black text-white italic tracking-wide uppercase">LIVE TRANSMISSIONS</h2>
+            <h2 className="text-lg font-black text-white italic tracking-wide uppercase">NEWS</h2>
           </div>
           <div className="space-y-3 overflow-y-auto pr-2 custom-scrollbar grow">
             {newsArticles.length === 0 ? (
@@ -170,7 +170,7 @@ export default async function HomePage() {
         {/* Column 2: Ecosystem Modules */}
         <div className="panel-slf p-6 rounded-xl flex flex-col anime-glitch-hover h-120">
           <div className="border-b border-gray-800 pb-3 mb-4 shrink-0">
-            <h2 className="text-lg font-black text-white italic tracking-wide uppercase">ECOSYSTEM MODULES</h2>
+            <h2 className="text-lg font-black text-white italic tracking-wide uppercase">META BUILDS</h2>
           </div>
           <div className="space-y-3 overflow-y-auto pr-2 custom-scrollbar grow">
             <div className="p-3 rounded bg-black/50 border border-gray-800 group hover:border-guardian-light/50 transition-colors cursor-pointer">
@@ -191,7 +191,7 @@ export default async function HomePage() {
             <div className="flex items-center justify-between border-b border-gray-800 pb-2 mb-3 shrink-0">
               <h2 className="text-sm font-black text-jade-tech italic tracking-wide uppercase flex items-center gap-2">
                 <span className="w-2 h-2 bg-jade-tech animate-pulse rounded-full"></span>
-                FEATURED REQUISITION
+                MERCH SPOTLIGHT
               </h2>
             </div>
             

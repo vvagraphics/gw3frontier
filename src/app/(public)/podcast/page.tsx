@@ -79,7 +79,7 @@ export default function PodcastPage() {
       {/* LEFT DRAWER PANEL: DIRECTORY INDEX */}
       <div className="w-full lg:w-1/3 flex flex-col gap-4 h-full overflow-hidden shrink-0">
         <div className="border-b border-gray-800 pb-4 shrink-0">
-          <h2 className="text-xl font-bold tracking-wider text-white">COMMUNICATIONS LOGS</h2>
+          <h2 className="text-xl font-bold tracking-wider text-white">PODCASTS</h2>
           <div className="flex gap-2 mt-3">
             {["All", "GW3 Frontier", "The Wrap-Up"].map((series) => (
               <button

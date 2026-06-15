@@ -16,13 +16,13 @@ export default function PublicLayout({
               GW3//FRONTIER
             </Link>
             <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-400">
-  <Link href="/" className="hover:text-cyberNeon transition-colors">GW3 Intel</Link>
-  <Link href="/build-crafter" className="hover:text-cyberNeon transition-colors">Build Crafter</Link>
-  <Link href="/tactical-map" className="hover:text-cyberNeon transition-colors">Tactical Map</Link>
+  <Link href="/" className="hover:text-cyberNeon transition-colors">GW3 Home</Link>
+  <Link href="/build-crafter" className="hover:text-cyberNeon transition-colors">Meta Builds</Link>
+  <Link href="/tactical-map" className="hover:text-cyberNeon transition-colors">Resource Map</Link>
   <Link href="/podcast" className="hover:text-cyberNeon transition-colors hover:text-mesmer-neon">Podcast</Link>
   <Link href="/requisitions" className="hover:text-jade-tech transition-colors flex items-center gap-2">
   <span className="w-2 h-2 rounded-full bg-jade-tech animate-pulse"></span>
-  Requisitions // Merch
+  Merch // Requisitions
 </Link>
 </nav>
           </div>
