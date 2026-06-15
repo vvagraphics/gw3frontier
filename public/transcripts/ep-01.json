@@ -1,0 +1,86 @@
+{
+  "description": "In this deep dive, we explore the explosive and unexpected reveal of Guild Wars 3 during the June 2026 Summer Game Fest. The episode breaks down the studio's bold decisions to execute a total chronological lore reset, transition to the demanding Unreal Engine 5, and entirely omit the Xbox ecosystem due to hardware parity constraints. We also analyze the controversial shift from traditional tab-targeting to a highly kinetic, controller-first combat system focused on momentum.",
+  "timestamps": [
+    { "label": "Transmission Start: Summer Game Fest Shockwave", "time": 0 },
+    {
+      "label": "Chronological Reset: Eradicating Narrative Bloat",
+      "time": 143
+    },
+    { "label": "The Hardware Wall: Unreal Engine 5 Migration", "time": 248 },
+    { "label": "Ecosystem Omission: Xbox Series S Bottleneck", "time": 336 },
+    { "label": "Kinetic Shift: Controller-First Combat Evolution", "time": 475 }
+  ],
+  "segments": [
+    {
+      "duration": 20.12,
+      "language": "en-us",
+      "speaker": "Unknown",
+      "start": 0.08,
+      "words": [
+        {
+          "confidence": 1,
+          "duration": 0.84,
+          "eos": false,
+          "start": 0.08,
+          "tags": [],
+          "text": "Usually",
+          "type": "word"
+        },
+        {
+          "confidence": 1,
+          "duration": 0.2,
+          "eos": false,
+          "start": 0.96,
+          "tags": [],
+          "text": "when",
+          "type": "word"
+        },
+        {
+          "confidence": 1,
+          "duration": 0.12,
+          "eos": false,
+          "start": 1.16,
+          "tags": [],
+          "text": "you",
+          "type": "word"
+        },
+        {
+          "confidence": 1,
+          "duration": 0.12,
+          "eos": false,
+          "start": 1.28,
+          "tags": [],
+          "text": "look",
+          "type": "word"
+        },
+        {
+          "confidence": 1,
+          "duration": 0.12,
+          "eos": false,
+          "start": 1.4,
+          "tags": [],
+          "text": "at",
+          "type": "word"
+        },
+        {
+          "confidence": 1,
+          "duration": 0.08,
+          "eos": false,
+          "start": 1.52,
+          "tags": [],
+          "text": "a",
+          "type": "word"
+        },
+        {
+          "confidence": 1,
+          "duration": 0.8,
+          "eos": false,
+          "start": 1.6,
+          "tags": [],
+          "text": "seismograph,",
+          "type": "word"
+        }
+      ]
+    }
+  ]
+}

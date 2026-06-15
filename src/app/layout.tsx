@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 // @ts-expect-error: CSS module declaration not found
 import "./globals.css";
+import { AudioProvider } from "@/context/AudioContext";
 
 // This object controls your SEO headers. Google reads this to list your site!
 export const metadata: Metadata = {
@@ -17,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased" suppressHydrationWarning>
-        {children}
+        <AudioProvider>
+          {children}
         <Analytics />
+        </AudioProvider>
       </body>
     </html>
   );
