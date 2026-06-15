@@ -20,26 +20,27 @@ interface EpisodeMeta {
 // Master tracking index for playlist layout
 const PLAYLIST_MANIFEST: EpisodeMeta[] = [
   {
-    id: "ep-01",
+    id: "frontier-01", // Maps to frontier-01.json
     series: "GW3 Frontier",
     episode: 1,
     title: "Guild Wars 3 Resets the Tyrian Timeline",
     status: "Released",
     audioUrl: "http://mr3anderson.pro/podcast/gw3frontier/Guild_Wars_3_Resets_the_Tyrian_Timeline.m4a",
-    spotifyUrl: "https://open.spotify.com",
+    spotifyUrl: "https://open.spotify.com/show/033vIllxMnSMRbi8Vqvffc",
     appleUrl: "https://podcasts.apple.com"
   },
   {
-    id: "ep-02",
+    id: "frontier-02", // Maps to frontier-02.json
     series: "GW3 Frontier",
     episode: 2,
     title: "Ancient Orr returns in Guild Wars 3",
     status: "Released",
-    audioUrl: "http://mr3anderson.pro/podcast/gw3frontier/ep2_sample.m4a",
-    spotifyUrl: "https://open.spotify.com"
+    audioUrl: "http://mr3anderson.pro/podcast/gw3frontier/Ancient_Orr_returns_in_Guild_Wars_3.m4a",
+    spotifyUrl: "https://open.spotify.com/show/033vIllxMnSMRbi8Vqvffc",
+    appleUrl: "https://podcasts.apple.com"
   },
   {
-    id: "ep-wrapup-01",
+    id: "wrapup-01", // Maps to wrapup-01.json
     series: "The Wrap-Up",
     episode: 1,
     title: "Launch Week Speculation Framework",
@@ -54,11 +55,13 @@ export default function PodcastPage() {
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const [activeSeries, setActiveSeries] = useState("All");
-  const [selectedEpisodeId, setSelectedEpisodeId] = useState<string>("ep-01");
+  const [selectedEpisodeId, setSelectedEpisodeId] = useState<string>("frontier-01");
   const [transcript, setTranscript] = useState<TranscriptWord[]>([]);
   const [liveTimestamps, setLiveTimestamps] = useState<Timestamp[]>([]);
   const [liveDescription, setLiveDescription] = useState("");
   const [isUserScrolling, setIsUserScrolling] = useState(false);
+
+  
 
   const selectedEpisode = PLAYLIST_MANIFEST.find((ep) => ep.id === selectedEpisodeId) || PLAYLIST_MANIFEST[0];
 

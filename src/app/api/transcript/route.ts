@@ -4,10 +4,10 @@ import path from "path";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const episodeId = searchParams.get("id") || "ep-01";
+  // Changed fallback from 'ep-01' to 'frontier-01'
+  const episodeId = searchParams.get("id") || "frontier-01";
 
   try {
-    // Look inside your public directory for the specific episode config file
     const filePath = path.join(process.cwd(), "public", "transcripts", `${episodeId}.json`);
     
     if (!fs.existsSync(filePath)) {
