@@ -1,180 +1,113 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
-
-interface TranscriptWord { text: string; start: number; end?: number; duration?: number; }
+import { useAudio } from "@/context/AudioContext";
+import { PLAYLIST_MANIFEST, EpisodeMeta } from "@/lib/podcastData";
 
 export default function PodcastMiniPlayer() {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const { activeEpisode, playEpisode, togglePlay, isPlaying } = useAudio();
 
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [transcript, setTranscript] = useState<TranscriptWord[]>([]);
-  const [isUserScrolling, setIsUserScrolling] = useState(false);
+  // Filter for released episodes, assuming the first one in the array is the newest
+  const releasedEpisodes = PLAYLIST_MANIFEST.filter((ep) => ep.status === "Released");
+  const latestEpisode = releasedEpisodes[0];
+  const olderEpisodes = releasedEpisodes.slice(1);
 
-  useEffect(() => {
-    fetch("/api/transcript")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data && data.segments) {
-          setTranscript(data.segments.flatMap((s: { words: TranscriptWord[] }) => s.words));
-        }
-      })
-      .catch((err) => console.error("Failed to load transcript:", err));
-  }, []);
-
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (audioRef.current.paused) audioRef.current.play();
-      else audioRef.current.pause();
+  const handlePlayClick = (episode: EpisodeMeta) => {
+    // If clicking the episode that is already loaded, just play/pause it
+    if (activeEpisode?.id === episode.id) {
+      togglePlay();
+    } else {
+      // Otherwise, load and play the new episode
+      playEpisode(episode);
     }
   };
 
-  const handleTimeUpdate = () => {
-    if (audioRef.current) setCurrentTime(audioRef.current.currentTime);
-  };
-
-  const seekFromBar = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rail = e.currentTarget;
-    const rect = rail.getBoundingClientRect();
-    const percent = (e.clientX - rect.left) / rect.width;
-    if (audioRef.current) {
-      audioRef.current.currentTime = percent * audioRef.current.duration;
-    }
-  };
-
-  const seekToWord = (startTime: number) => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = startTime;
-      audioRef.current.play();
-      setIsUserScrolling(false);
-    }
-  };
-
-  const formatTime = (time: number) => {
-    if (isNaN(time)) return "0:00";
-    const mins = Math.floor(time / 60);
-    const secs = Math.floor(time % 60);
-    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-  };
-
-  const activeIndex = transcript.findIndex((w) => {
-    const end = w.end || (w.start + (w.duration || 0.5));
-    return currentTime >= w.start && currentTime <= end;
-  });
-
-  const handleUserScroll = () => {
-    setIsUserScrolling(true);
-    if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-    scrollTimeoutRef.current = setTimeout(() => {
-      setIsUserScrolling(false);
-    }, 4000);
-  };
-
-  useEffect(() => {
-    if (!isUserScrolling && activeIndex !== -1 && scrollRef.current) {
-      const activeEl = scrollRef.current.children[activeIndex] as HTMLElement;
-      if (activeEl) {
-        activeEl.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    }
-  }, [activeIndex, isUserScrolling]);
+  if (!latestEpisode) return null; // Fallback if no episodes are released
 
   return (
     <div className="panel-slf p-6 rounded-xl flex flex-col h-105 lg:h-full justify-between anime-glitch-hover gap-4">
-      <div className="flex flex-col gap-2 flex-1 min-h-0">
-        <span className="text-[10px] font-bold text-mesmer-neon uppercase tracking-widest block">
-          Live Decryption
-        </span>
-
-        <div className="flex-1 min-h-0 bg-black/60 rounded-md border border-mesmer-neon/20 shadow-inner relative overflow-hidden">
-          <div
-            ref={scrollRef}
-            onWheel={handleUserScroll}
-            onTouchMove={handleUserScroll}
-            className="absolute inset-0 overflow-y-auto custom-scrollbar p-6 text-center leading-loose flex flex-wrap justify-center content-start gap-x-2 gap-y-1"
-            style={{ contain: 'content' }}
-          >
-            {transcript.length === 0 ? (
-              <div className="w-full h-full flex items-center justify-center text-gray-500 animate-pulse font-mono text-sm">
-                Intercepting audio log array...
-              </div>
-            ) : (
-              transcript.map((w, i) => (
-                <span
-                  key={i}
-                  onClick={() => seekToWord(w.start)}
-                  className={`cursor-pointer text-xl lg:text-2xl font-serif transition-all duration-300 inline-block h-fit ${
-                    i === activeIndex 
-                      ? "text-white font-bold scale-110 drop-shadow-[0_0_10px_rgba(217,70,239,0.8)]" 
-                      : "text-gray-600 hover:text-gray-300"
-                  }`}
-                >
-                  {w.text}
-                </span>
-              ))
-            )}
-          </div>
+      
+      {/* LATEST EPISODE SECTION */}
+      <div className="flex flex-col gap-3 flex-1 min-h-0 border-b border-gray-900 pb-4">
+        <div className="flex justify-between items-center">
+          <span className="text-[10px] font-bold text-mesmer-neon uppercase tracking-widest block">
+            Latest Transmission
+          </span>
+          {latestEpisode.spotifyUrl && (
+            <a 
+              href={latestEpisode.spotifyUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-[10px] font-mono text-[#1DB954] hover:text-white transition-colors"
+            >
+              Spotify ↗
+            </a>
+          )}
         </div>
-      </div>
 
-      <div className="space-y-3 pt-2 border-t border-gray-900 shrink-0">
-        <h4 className="text-white font-bold text-sm truncate">GW3 Resets the Tyrian Timeline</h4>
-        
-        <div className="flex items-center gap-4">
-          <button 
-            onClick={togglePlay} 
-            className="w-10 h-10 rounded-full border border-mesmer-neon text-mesmer-neon flex items-center justify-center hover:bg-mesmer-neon hover:text-black transition-all shadow-[0_0_10px_rgba(217,70,239,0.15)] hover:shadow-[0_0_15px_rgba(217,70,239,0.5)] shrink-0"
-            aria-label={isPlaying ? "Pause Stream" : "Play Stream"}
-          >
-            {isPlaying ? (
-              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-              </svg>
+        {/* Featured Play Card */}
+        <div 
+          className={`flex-1 min-h-0 bg-black/60 rounded-md border ${activeEpisode?.id === latestEpisode.id ? 'border-mesmer-neon' : 'border-gray-800'} p-4 relative overflow-hidden group cursor-pointer hover:border-mesmer-neon/50 transition-all flex flex-col justify-center items-center text-center gap-4`}
+          onClick={() => handlePlayClick(latestEpisode)}
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-mesmer-neon/5 via-transparent to-transparent pointer-events-none"></div>
+          
+          <button className={`w-16 h-16 rounded-full border flex items-center justify-center transition-all shadow-[0_0_15px_rgba(217,70,239,0.15)] ${activeEpisode?.id === latestEpisode.id && isPlaying ? 'border-mesmer-neon text-black bg-mesmer-neon shadow-[0_0_20px_rgba(217,70,239,0.5)]' : 'border-mesmer-neon text-mesmer-neon group-hover:bg-mesmer-neon group-hover:text-black'}`}>
+            {activeEpisode?.id === latestEpisode.id && isPlaying ? (
+              <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
             ) : (
-              <svg className="w-4 h-4 fill-current ml-0.5" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
+              <svg className="w-8 h-8 fill-current ml-1.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
             )}
           </button>
-          
-          <div className="text-xs font-mono text-gray-400 w-10 text-right shrink-0">
-            {formatTime(currentTime)}
-          </div>
-          
-          <div 
-            className="flex-1 h-1.5 bg-gray-800/60 rounded-full cursor-pointer relative group" 
-            onClick={seekFromBar}
-          >
-            <div 
-              className="absolute h-full bg-mesmer-neon rounded-full group-hover:shadow-[0_0_8px_rgba(217,70,239,0.8)] transition-all" 
-              style={{ width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%` }} 
-            />
-          </div>
-          
-          <div className="text-xs font-mono text-gray-500 w-10 shrink-0">
-            {formatTime(duration)}
+
+          <div className="space-y-1 relative z-10">
+            <h3 className="text-white font-bold text-lg leading-tight group-hover:text-mesmer-neon transition-colors line-clamp-2">
+              {latestEpisode.title}
+            </h3>
+            <p className="text-[10px] text-gray-500 font-mono uppercase tracking-widest">
+              {latestEpisode.series} // EP {latestEpisode.episode}
+            </p>
           </div>
         </div>
       </div>
 
-      <audio 
-        ref={audioRef} 
-        src="http://mr3anderson.pro/podcast/gw3frontier/Guild_Wars_3_Resets_the_Tyrian_Timeline.m4a" 
-        onPlay={() => setIsPlaying(true)} 
-        onPause={() => setIsPlaying(false)} 
-        onTimeUpdate={handleTimeUpdate} 
-        onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)} 
-        className="hidden"
-      />
+      {/* EPISODE PICKER LIST (Scrollable for older episodes) */}
+      {olderEpisodes.length > 0 && (
+        <div className="space-y-2 shrink-0 max-h-[35%] overflow-y-auto custom-scrollbar pr-2">
+          <span className="text-[10px] text-gray-500 uppercase tracking-widest block mb-2">Previous Logs</span>
+          
+          {olderEpisodes.map((ep) => (
+            <div 
+              key={ep.id} 
+              onClick={() => handlePlayClick(ep)}
+              className={`flex items-center gap-3 p-2.5 rounded cursor-pointer transition-colors border-l-2 ${activeEpisode?.id === ep.id ? 'bg-mesmer-neon/10 border-mesmer-neon' : 'bg-black/40 border-gray-800 hover:border-gray-500'}`}
+            >
+              <button className={`w-8 h-8 rounded-full flex items-center justify-center border shrink-0 ${activeEpisode?.id === ep.id ? 'border-mesmer-neon text-mesmer-neon' : 'border-gray-600 text-gray-400'}`}>
+                  {activeEpisode?.id === ep.id && isPlaying ? (
+                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                  ) : (
+                    <svg className="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  )}
+              </button>
+              <div className="flex flex-col min-w-0">
+                <span className={`text-sm truncate ${activeEpisode?.id === ep.id ? 'text-white font-bold' : 'text-gray-300'}`}>
+                  {ep.title}
+                </span>
+                <span className="text-[9px] font-mono text-gray-500 uppercase">
+                  EP {ep.episode} {ep.spotifyUrl && <span className="ml-2 text-[#1DB954]/70">SPOTIFY</span>}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
-      <Link href="/podcast" className="block text-center text-[10px] uppercase tracking-widest text-guardian-light hover:text-white transition-colors shrink-0">
+      {/* LINK TO FULL STUDIO */}
+      <Link href="/podcast" className="block text-center text-[10px] uppercase tracking-widest text-guardian-light hover:text-white transition-colors shrink-0 pt-3 border-t border-gray-900 mt-1">
         Enter Full Interactive Studio ↗
       </Link>
+
     </div>
   );
 }
