@@ -39,3 +39,20 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Next.js / Node build and dependency folders
+node_modules/
+.next/
+out/
+build/
+
+# Maven build outputs (Fixes the dirty git directory tracking issue)
+**/target/
+*.class
+
+# OS tracking files
+.DS_Store
+Thumbs.db
+
+# Local environment files
+.env*.local
