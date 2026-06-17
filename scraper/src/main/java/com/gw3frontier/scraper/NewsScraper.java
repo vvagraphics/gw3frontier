@@ -14,27 +14,31 @@ import java.util.List;
 
 public class NewsScraper {
 
-    // Simple inner data model class to represent a news article
+    // Updated inner data model class to represent a news article with date and order
     public static class Article {
         public String id;
         public String title;
         public String url;
         public String imageUrl;
         public String game;
+        public String date;
+        public int sortOrder;
 
-        public Article(String id, String title, String url, String imageUrl, String game) {
+        public Article(String id, String title, String url, String imageUrl, String game, String date, int sortOrder) {
             this.id = id;
             this.title = title.replace("\"", "\\\""); // Escape quotes for clean JSON
             this.url = url;
             this.imageUrl = imageUrl;
             this.game = game;
+            this.date = date;
+            this.sortOrder = sortOrder;
         }
 
-        // Formats the object into a simple JSON block manually to avoid heavy library dependencies
+        // Formats the object into a simple JSON block
         public String toJsonString() {
             return String.format(
-                "  {\n    \"id\": \"%s\",\n    \"title\": \"%s\",\n    \"url\": \"%s\",\n    \"imageUrl\": \"%s\",\n    \"game\": \"%s\"\n  }",
-                id, title, url, imageUrl, game
+                "  {\n    \"id\": \"%s\",\n    \"title\": \"%s\",\n    \"url\": \"%s\",\n    \"imageUrl\": \"%s\",\n    \"game\": \"%s\",\n    \"date\": \"%s\",\n    \"sortOrder\": %d\n  }",
+                id, title, url, imageUrl, game, date, sortOrder
             );
         }
     }
@@ -64,15 +68,14 @@ public class NewsScraper {
     }
 
     private static void scrapeGuildWars3(List<Article> list) throws IOException {
-        // Fetch and parse the static DOM shell from the landing section
         Document doc = Jsoup.connect("https://www.guildwars3.com/en/#news")
                             .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
                             .timeout(10000)
                             .get();
 
-        // Query the DOM for all carousel slide nodes loaded into the Embla container
         Elements slides = doc.select("div.embla__slide");
 
+        int order = 1; // Track the carousel order
         for (Element slide : slides) {
             Element linkElement = slide.selectFirst("a.link");
             Element articleElement = slide.selectFirst("article.news-article");
@@ -84,40 +87,50 @@ public class NewsScraper {
                 String title = titleElement.text();
                 String rawHref = linkElement.attr("href");
                 String imageUrl = imgElement != null ? imgElement.attr("src") : "";
+                
+                // GW3 currently lacks a date, so we use a fallback label
+                String date = "Featured"; 
 
                 // Convert relative links to absolute URLs
                 String absoluteUrl = rawHref.startsWith("/") ? "https://www.guildwars3.com" + rawHref : rawHref;
 
-                list.add(new Article(id, title, absoluteUrl, imageUrl, "Guild Wars 3"));
+                list.add(new Article(id, title, absoluteUrl, imageUrl, "Guild Wars 3", date, order));
+                order++;
             }
         }
         System.out.println("Successfully indexed GW3 carousel cards.");
     }
 
     private static void scrapeGuildWars2(List<Article> list) throws IOException {
-        // Scrapes the main active tracking index for active GW2 events and logs
         Document doc = Jsoup.connect("https://www.guildwars2.com/en/news/")
                             .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
                             .timeout(10000)
                             .get();
 
-        // Adjust selectors here to match the current target structure of guildwars2.com/news
         Elements articles = doc.select(".blog-post, article"); 
 
         int count = 0;
+        int order = 1; // Track the feed order
         for (Element article : articles) {
-            if (count >= 5) break; // Limit legacy items to keep the homepage viewport tidy
+            if (count >= 5) break;
 
             Element titleLink = article.selectFirst("h3 a, h2 a, .entry-title a");
             Element imgElement = article.selectFirst("img");
+            
+            // Look for common date classes used in GW2's news feed
+            Element dateElement = article.selectFirst(".blog-date, .entry-date, time, .date");
 
             if (titleLink != null) {
                 String title = titleLink.text();
                 String url = titleLink.attr("href");
                 String id = "gw2-" + url.hashCode();
                 String imageUrl = imgElement != null ? imgElement.attr("src") : "";
+                
+                // Apply the extracted date, or default to "Recent" if it cannot be found
+                String date = dateElement != null ? dateElement.text().trim() : "Recent";
 
-                list.add(new Article(id, title, url, imageUrl, "Guild Wars 2"));
+                list.add(new Article(id, title, url, imageUrl, "Guild Wars 2", date, order));
+                order++;
                 count++;
             }
         }
@@ -125,11 +138,9 @@ public class NewsScraper {
     }
 
     private static void writeJsonOutput(List<Article> articles) {
-        // Safely resolve the relative path out to the shared front-end API layer
         String targetPath = Paths.get("..", "src", "lib", "api", "news.json").toAbsolutePath().normalize().toString();
         File file = new File(targetPath);
 
-        // Ensure parent directories exist
         if (file.getParentFile() != null) {
             file.getParentFile().mkdirs();
         }
