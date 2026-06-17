@@ -1,11 +1,11 @@
 [
   {
-    "id": "article-our-guild-wars-philosophy",
-    "title": "Our Guild Wars Philosophy",
-    "url": "../en/news/our-guild-wars-philosophy",
-    "imageUrl": "https://d169gnos68toqd.cloudfront.net/moon-announce/attachments/ydoikz9sicvcdglbb85lomqb-project-moon-core-philosophy-blog-1920x1080.full.jpg",
+    "id": "article-announcing-guild-wars-3",
+    "title": "Announcing Guild Wars 3",
+    "url": "../en/news/announcing-guild-wars-3",
+    "imageUrl": "https://d169gnos68toqd.cloudfront.net/moon-announce/attachments/b4nxr3xgnqawjjsx1vbb3fj3-farmartboard.full.jpg",
     "game": "Guild Wars 3",
-    "date": "Featured",
+    "date": "Article 1",
     "sortOrder": 1
   },
   {
@@ -14,16 +14,16 @@
     "url": "../en/news/guild-wars-3-stepping-into-ancient-orr",
     "imageUrl": "https://d169gnos68toqd.cloudfront.net/moon-announce/attachments/me3hzx3vl93winew9d3x193z-balth.full.jpg",
     "game": "Guild Wars 3",
-    "date": "Featured",
+    "date": "Article 2",
     "sortOrder": 2
   },
   {
-    "id": "article-announcing-guild-wars-3",
-    "title": "Announcing Guild Wars 3",
-    "url": "../en/news/announcing-guild-wars-3",
-    "imageUrl": "https://d169gnos68toqd.cloudfront.net/moon-announce/attachments/b4nxr3xgnqawjjsx1vbb3fj3-farmartboard.full.jpg",
+    "id": "article-our-guild-wars-philosophy",
+    "title": "Our Guild Wars Philosophy",
+    "url": "../en/news/our-guild-wars-philosophy",
+    "imageUrl": "https://d169gnos68toqd.cloudfront.net/moon-announce/attachments/ydoikz9sicvcdglbb85lomqb-project-moon-core-philosophy-blog-1920x1080.full.jpg",
     "game": "Guild Wars 3",
-    "date": "Featured",
+    "date": "Article 3",
     "sortOrder": 3
   },
   {
@@ -32,7 +32,7 @@
     "url": "https://www.guildwars2.com/en/news/future-of-the-guild-wars-franchise/",
     "imageUrl": "",
     "game": "Guild Wars 2",
-    "date": "Recent",
+    "date": "by The Guild Wars 2 Team on June 06, 2026",
     "sortOrder": 1
   },
   {
@@ -41,7 +41,7 @@
     "url": "https://www.guildwars2.com/en/news/celebrating-the-announcement-of-guild-wars-3/",
     "imageUrl": "",
     "game": "Guild Wars 2",
-    "date": "Recent",
+    "date": "by The Guild Wars 2 Team on June 05, 2026",
     "sortOrder": 2
   },
   {
@@ -50,7 +50,7 @@
     "url": "https://www.guildwars2.com/en/news/join-the-official-guild-wars-community-discord-server/",
     "imageUrl": "",
     "game": "Guild Wars 2",
-    "date": "Recent",
+    "date": "by The Guild Wars 2 Team on June 01, 2026",
     "sortOrder": 3
   },
   {
@@ -59,7 +59,7 @@
     "url": "https://www.guildwars2.com/en/news/the-only-way-is-live-play-the-next-chapter-of-guild-wars-2-now/",
     "imageUrl": "",
     "game": "Guild Wars 2",
-    "date": "Recent",
+    "date": "by The Guild Wars 2 Team on May 12, 2026",
     "sortOrder": 4
   },
   {
@@ -68,7 +68,7 @@
     "url": "https://www.guildwars2.com/en/news/visions-of-eternity-continues-next-week-with-the-only-way/",
     "imageUrl": "",
     "game": "Guild Wars 2",
-    "date": "Recent",
+    "date": "by The Guild Wars 2 Team on May 05, 2026",
     "sortOrder": 5
   }
 ]
