@@ -90,7 +90,7 @@ public class NewsScraper {
                 String imageUrl = imgElement != null ? imgElement.attr("src") : "";
                 
                 // Creates a clean readable sequence counter for items without dates
-                String dateLabel = "Article " + currentDisplayOrder; 
+                String dateLabel = "by Guild Wars 3 Team Article " + currentDisplayOrder; 
 
                 String absoluteUrl = rawHref.startsWith("/") ? "https://www.guildwars3.com" + rawHref : rawHref;
 
