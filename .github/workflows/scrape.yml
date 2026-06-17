@@ -2,8 +2,8 @@ name: Daily News Scraper
 
 on:
   schedule:
-    # Runs at 12:00 AM UTC every day
-    - cron: '0 0 * * *'
+    # Runs at 12:00 PM UTC every day (Noon)
+    - cron: '0 12 * * *'
   workflow_dispatch: # Adds a "Run workflow" button in GitHub so you can trigger it manually
 
 permissions:
@@ -36,9 +36,9 @@ jobs:
         
         # Check if the specific news JSON file has actual modifications
         if git diff --quiet src/lib/api/news.json; then
-          echo "No new news data detected. Skipping commit to prevent empty commits."
+          echo "No new news data detected for GW2 or GW3. Skipping commit to prevent empty logs."
         else
-          echo "New news data discovered! Committing and pushing updates..."
+          echo "New articles discovered! Committing and pushing updates..."
           git add src/lib/api/news.json
           git commit -m "chore: automated daily news fetch"
           git push
