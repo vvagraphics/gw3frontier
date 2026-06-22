@@ -75,6 +75,18 @@ Following the release on the 24th, expand your news layout:
 
 ## 💻 Local Development
 
+## 🤖 Automated Data Pipelines & Syncing
+
+### The News Scraper & Git Conflicts
+The site features an automated GitHub Actions workflow (`scrape.yml`) that runs in the cloud to scrape the latest community news[cite: 1].
+* **The Mechanism:** The scraper runs on the server and automatically commits updates directly to `src/lib/api/news.json`.
+* **The Risk:** Working locally without pulling the latest changes will cause a merge conflict in `news.json` when you try to sync or merge branches.
+
+### Golden Rule for Development
+Always run a pull command **before** touching any code locally to bring down the latest automated news entries:
+```bash
+git pull
+
 First, install the dependencies:
 ```bash
 npm install
