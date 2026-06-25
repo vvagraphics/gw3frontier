@@ -58,7 +58,7 @@ export default async function HomePage() {
     <div className="flex flex-col gap-6 py-0">
       
       {/* CHRONOLOGICAL NAVIGATOR */}
-      <EraNavigator />
+      {/* <EraNavigator /> */}
 
       {/* HERO SECTION - Framed with a clean top track separator */}
       <section className="relative text-center max-w-4xl mx-auto flex flex-col items-center pt-4 pb-0 w-full border-t border-gray-900/40">

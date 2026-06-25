@@ -1,5 +1,7 @@
 import React from "react";
 import Link from "next/link";
+import { EraProvider } from "@/context/EraContext";
+import EraNavigator from "@/components/EraNavigator";
 
 export default function PublicLayout({
   children,
@@ -7,7 +9,9 @@ export default function PublicLayout({
   children: React.ReactNode;
 }) {
   return (
+    <EraProvider>
     <div className="min-h-screen flex flex-col bg-slateDark text-white">
+      
       {/* Navigation Header */}
       <header className="border-b border-gray-800 bg-panelDark/50 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -32,7 +36,7 @@ export default function PublicLayout({
             </span>
           </div>
         </div>
-      </header>
+      </header><EraNavigator />
 
       {/* Main content injection site */}
       <main className="grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
@@ -43,6 +47,6 @@ export default function PublicLayout({
       <footer className="border-t border-gray-900 bg-black/40 py-6 text-center text-xs text-gray-600">
         <p>© 2026 GW3FRONTIER. Unofficial Fan Ecosystem. Built for the Guild Wars 3 Community.</p>
       </footer>
-    </div>
+    </div></EraProvider>
   );
 }
