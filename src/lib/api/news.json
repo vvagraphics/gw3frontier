@@ -1,62 +1,74 @@
 [
   {
-    "date": "by The Guild Wars 2 Team on June 25, 2026",
-    "link": "https://www.guildwars2.com/en/news/sizzling-summer-savings-start-now/",
-    "source": "Official",
-    "title": "Sizzling Summer Savings Start Now!"
+    "id": "article-announcing-guild-wars-3",
+    "title": "Announcing Guild Wars 3",
+    "url": "../en/news/announcing-guild-wars-3",
+    "imageUrl": "https://d169gnos68toqd.cloudfront.net/moon-announce/attachments/b4nxr3xgnqawjjsx1vbb3fj3-farmartboard.full.jpg",
+    "game": "Guild Wars 3",
+    "date": "by Guild Wars 3 Team Article 1",
+    "sortOrder": 1
   },
   {
+    "id": "article-guild-wars-3-stepping-into-ancient-orr",
+    "title": "The Setting of Guild Wars 3: Stepping into Ancient Orr",
+    "url": "../en/news/guild-wars-3-stepping-into-ancient-orr",
+    "imageUrl": "https://d169gnos68toqd.cloudfront.net/moon-announce/attachments/me3hzx3vl93winew9d3x193z-balth.full.jpg",
+    "game": "Guild Wars 3",
+    "date": "by Guild Wars 3 Team Article 2",
+    "sortOrder": 2
+  },
+  {
+    "id": "article-our-guild-wars-philosophy",
+    "title": "Our Guild Wars Philosophy",
+    "url": "../en/news/our-guild-wars-philosophy",
+    "imageUrl": "https://d169gnos68toqd.cloudfront.net/moon-announce/attachments/ydoikz9sicvcdglbb85lomqb-project-moon-core-philosophy-blog-1920x1080.full.jpg",
+    "game": "Guild Wars 3",
+    "date": "by Guild Wars 3 Team Article 3",
+    "sortOrder": 3
+  },
+  {
+    "id": "gw2-1285715856",
+    "title": "Cross-Play & Portable Tyria: Guild Wars Reforged Is Now Available on Mobile",
+    "url": "https://www.guildwars2.com/en/news/guild-wars-reforged-is-now-available-on-mobile/",
+    "imageUrl": "",
+    "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on June 15, 2026",
-    "link": "https://www.guildwars2.com/en/news/guild-wars-reforged-is-now-available-on-mobile/",
-    "source": "Official",
-    "title": "Cross-Play \u0026 Portable Tyria: Guild Wars Reforged Is Now Available on Mobile"
+    "sortOrder": 1
   },
   {
+    "id": "gw2--1682043398",
+    "title": "The Future of the Guild Wars Franchise: Our Commitment to Tyria",
+    "url": "https://www.guildwars2.com/en/news/future-of-the-guild-wars-franchise/",
+    "imageUrl": "",
+    "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on June 06, 2026",
-    "link": "https://www.guildwars2.com/en/news/future-of-the-guild-wars-franchise/",
-    "source": "Official",
-    "title": "The Future of the Guild Wars Franchise: Our Commitment to Tyria"
+    "sortOrder": 2
   },
   {
+    "id": "gw2-431427671",
+    "title": "Celebrating the Announcement of Guild Wars 3",
+    "url": "https://www.guildwars2.com/en/news/celebrating-the-announcement-of-guild-wars-3/",
+    "imageUrl": "",
+    "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on June 05, 2026",
-    "link": "https://www.guildwars2.com/en/news/celebrating-the-announcement-of-guild-wars-3/",
-    "source": "Official",
-    "title": "Celebrating the Announcement of Guild Wars 3"
+    "sortOrder": 3
   },
   {
+    "id": "gw2--256560550",
+    "title": "Join the Official Guild Wars Community Discord Server!",
+    "url": "https://www.guildwars2.com/en/news/join-the-official-guild-wars-community-discord-server/",
+    "imageUrl": "",
+    "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on June 01, 2026",
-    "link": "https://www.guildwars2.com/en/news/join-the-official-guild-wars-community-discord-server/",
-    "source": "Official",
-    "title": "Join the Official Guild Wars Community Discord Server!"
+    "sortOrder": 4
   },
   {
+    "id": "gw2--723699340",
+    "title": "‚ÄúThe Only Way‚Äù Is Live: Play the next chapter of Guild Wars 2 now!",
+    "url": "https://www.guildwars2.com/en/news/the-only-way-is-live-play-the-next-chapter-of-guild-wars-2-now/",
+    "imageUrl": "",
+    "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on May 12, 2026",
-    "link": "https://www.guildwars2.com/en/news/the-only-way-is-live-play-the-next-chapter-of-guild-wars-2-now/",
-    "source": "Official",
-    "title": "ìThe Only Wayî Is Live: Play the next chapter of Guild Wars 2 now!"
-  },
-  {
-    "date": "by The Guild Wars 2 Team on May 05, 2026",
-    "link": "https://www.guildwars2.com/en/news/visions-of-eternity-continues-next-week-with-the-only-way/",
-    "source": "Official",
-    "title": "Visions of Eternity Continues Next Week with ìThe Only Wayî"
-  },
-  {
-    "date": "by The Guild Wars 2 Team on April 29, 2026",
-    "link": "https://www.guildwars2.com/en/news/the-journey-so-far-visions-of-eternity-story-recap/",
-    "source": "Official",
-    "title": "The Journey So Far: Visions of Eternity Story Recap"
-  },
-  {
-    "date": "by The Guild Wars 2 Team on April 28, 2026",
-    "link": "https://www.guildwars2.com/en/news/guild-wars-reforged-launches-on-mobile-this-summer/",
-    "source": "Official",
-    "title": "Guild Wars Reforged Launches on Mobile This Summer!"
-  },
-  {
-    "date": "by The Guild Wars 2 Team on April 14, 2026",
-    "link": "https://www.guildwars2.com/en/news/super-adventure-festival-2026-is-live/",
-    "source": "Official",
-    "title": "Super Adventure Festival 2026 Is Live!"
+    "sortOrder": 5
   }
 ]
