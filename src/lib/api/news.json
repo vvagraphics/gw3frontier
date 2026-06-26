@@ -27,13 +27,22 @@
     "sortOrder": 3
   },
   {
+    "id": "gw2-1728700525",
+    "title": "Sizzling Summer Savings Start Now!",
+    "url": "https://www.guildwars2.com/en/news/sizzling-summer-savings-start-now/",
+    "imageUrl": "",
+    "game": "Guild Wars 2",
+    "date": "by The Guild Wars 2 Team on June 25, 2026",
+    "sortOrder": 1
+  },
+  {
     "id": "gw2-1285715856",
     "title": "Cross-Play & Portable Tyria: Guild Wars Reforged Is Now Available on Mobile",
     "url": "https://www.guildwars2.com/en/news/guild-wars-reforged-is-now-available-on-mobile/",
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on June 15, 2026",
-    "sortOrder": 1
+    "sortOrder": 2
   },
   {
     "id": "gw2--1682043398",
@@ -42,7 +51,7 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on June 06, 2026",
-    "sortOrder": 2
+    "sortOrder": 3
   },
   {
     "id": "gw2-431427671",
@@ -51,7 +60,7 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on June 05, 2026",
-    "sortOrder": 3
+    "sortOrder": 4
   },
   {
     "id": "gw2--256560550",
@@ -60,15 +69,6 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on June 01, 2026",
-    "sortOrder": 4
-  },
-  {
-    "id": "gw2--723699340",
-    "title": "“The Only Way” Is Live: Play the next chapter of Guild Wars 2 now!",
-    "url": "https://www.guildwars2.com/en/news/the-only-way-is-live-play-the-next-chapter-of-guild-wars-2-now/",
-    "imageUrl": "",
-    "game": "Guild Wars 2",
-    "date": "by The Guild Wars 2 Team on May 12, 2026",
     "sortOrder": 5
   }
 ]
