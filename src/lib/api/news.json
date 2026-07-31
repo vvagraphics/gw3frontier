@@ -36,13 +36,31 @@
     "sortOrder": 4
   },
   {
+    "id": "article-behind-the-music-video-guild-wars-3-main-theme-reveal",
+    "title": "Behind-the-Music Video: Guild Wars 3 Main Theme Reveal",
+    "url": "./en/news/behind-the-music-video-guild-wars-3-main-theme-reveal",
+    "imageUrl": "https://d169gnos68toqd.cloudfront.net/moon-announce/attachments/cgofcxdyznm4o9b412e6e7au-gw3-behind-the-music-textless-with-logo-1920x1080.full.jpg",
+    "game": "Guild Wars 3",
+    "date": "by Guild Wars 3 Team Article 5",
+    "sortOrder": 5
+  },
+  {
+    "id": "gw2--458318218",
+    "title": "Share Your Best Screenshots in the Homestead Design Contest",
+    "url": "https://www.guildwars2.com/en/news/share-your-best-screenshots-in-the-homestead-design-contest/",
+    "imageUrl": "",
+    "game": "Guild Wars 2",
+    "date": "by The Guild Wars 2 Team on July 30, 2026",
+    "sortOrder": 1
+  },
+  {
     "id": "gw2-390078493",
     "title": "Get Ready—The Guild Wars 2 Community Homestead Contest Launches Next Week!",
     "url": "https://www.guildwars2.com/en/news/get-ready-the-guild-wars-2-community-homestead-contest-launches-next-week/",
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on July 23, 2026",
-    "sortOrder": 1
+    "sortOrder": 2
   },
   {
     "id": "gw2--1790973900",
@@ -51,7 +69,7 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on July 15, 2026",
-    "sortOrder": 2
+    "sortOrder": 3
   },
   {
     "id": "gw2-1728700525",
@@ -60,7 +78,7 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on June 25, 2026",
-    "sortOrder": 3
+    "sortOrder": 4
   },
   {
     "id": "gw2-1285715856",
@@ -69,15 +87,6 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on June 15, 2026",
-    "sortOrder": 4
-  },
-  {
-    "id": "gw2--1682043398",
-    "title": "The Future of the Guild Wars Franchise: Our Commitment to Tyria",
-    "url": "https://www.guildwars2.com/en/news/future-of-the-guild-wars-franchise/",
-    "imageUrl": "",
-    "game": "Guild Wars 2",
-    "date": "by The Guild Wars 2 Team on June 06, 2026",
     "sortOrder": 5
   }
 ]
