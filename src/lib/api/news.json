@@ -54,13 +54,22 @@
     "sortOrder": 6
   },
   {
+    "id": "gw2--2010283505",
+    "title": "The Festival of the Four Winds Is Live Now!",
+    "url": "https://www.guildwars2.com/en/news/the-festival-of-the-four-winds-is-live-now/",
+    "imageUrl": "",
+    "game": "Guild Wars 2",
+    "date": "by The Guild Wars 2 Team on August 11, 2026",
+    "sortOrder": 1
+  },
+  {
     "id": "gw2-387003750",
     "title": "WvW War Score: Beta 2 Results and What’s Next",
     "url": "https://www.guildwars2.com/en/news/wvw-war-score-beta-2-results-and-whats-next/",
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on August 04, 2026",
-    "sortOrder": 1
+    "sortOrder": 2
   },
   {
     "id": "gw2--458318218",
@@ -69,7 +78,7 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on July 30, 2026",
-    "sortOrder": 2
+    "sortOrder": 3
   },
   {
     "id": "gw2-390078493",
@@ -78,7 +87,7 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on July 23, 2026",
-    "sortOrder": 3
+    "sortOrder": 4
   },
   {
     "id": "gw2--1790973900",
@@ -87,15 +96,6 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on July 15, 2026",
-    "sortOrder": 4
-  },
-  {
-    "id": "gw2-1728700525",
-    "title": "Sizzling Summer Savings Start Now!",
-    "url": "https://www.guildwars2.com/en/news/sizzling-summer-savings-start-now/",
-    "imageUrl": "",
-    "game": "Guild Wars 2",
-    "date": "by The Guild Wars 2 Team on June 25, 2026",
     "sortOrder": 5
   }
 ]
