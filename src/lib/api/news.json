@@ -45,6 +45,15 @@
     "sortOrder": 5
   },
   {
+    "id": "article-playable-species-spotlight-humans",
+    "title": "Playable Species Spotlight: Humans",
+    "url": "./en/news/playable-species-spotlight-humans",
+    "imageUrl": "https://d169gnos68toqd.cloudfront.net/moon-announce/attachments/tjvug6fuylw9cjghth6kw8fe-gw3-species-blog-human-1920x1080.full.jpg",
+    "game": "Guild Wars 3",
+    "date": "by Guild Wars 3 Team Article 6",
+    "sortOrder": 6
+  },
+  {
     "id": "gw2--2010283505",
     "title": "The Festival of the Four Winds Is Live Now!",
     "url": "https://www.guildwars2.com/en/news/the-festival-of-the-four-winds-is-live-now/",
