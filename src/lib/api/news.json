@@ -45,13 +45,22 @@
     "sortOrder": 5
   },
   {
+    "id": "gw2-1762356035",
+    "title": "“Code of Creation” Concludes Visions of Eternity on September 15",
+    "url": "https://www.guildwars2.com/en/news/code-of-creation-concludes-visions-of-eternity-on-september-15/",
+    "imageUrl": "",
+    "game": "Guild Wars 2",
+    "date": "by The Guild Wars 2 Team on September 08, 2026",
+    "sortOrder": 1
+  },
+  {
     "id": "gw2--651764226",
     "title": "14 Years of Guild Wars 2: Celebrate the Anniversary with up to 40% off Our Past Expansions",
     "url": "https://www.guildwars2.com/en/news/14-years-of-guild-wars-2-celebrate-the-anniversary-with-up-to-40-off-our-past-expansions/",
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on August 25, 2026",
-    "sortOrder": 1
+    "sortOrder": 2
   },
   {
     "id": "gw2--2010283505",
@@ -60,7 +69,7 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on August 11, 2026",
-    "sortOrder": 2
+    "sortOrder": 3
   },
   {
     "id": "gw2-387003750",
@@ -69,7 +78,7 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on August 04, 2026",
-    "sortOrder": 3
+    "sortOrder": 4
   },
   {
     "id": "gw2--458318218",
@@ -78,15 +87,6 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on July 30, 2026",
-    "sortOrder": 4
-  },
-  {
-    "id": "gw2-390078493",
-    "title": "Get Ready—The Guild Wars 2 Community Homestead Contest Launches Next Week!",
-    "url": "https://www.guildwars2.com/en/news/get-ready-the-guild-wars-2-community-homestead-contest-launches-next-week/",
-    "imageUrl": "",
-    "game": "Guild Wars 2",
-    "date": "by The Guild Wars 2 Team on July 23, 2026",
     "sortOrder": 5
   }
 ]
