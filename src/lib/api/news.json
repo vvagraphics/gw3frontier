@@ -45,13 +45,22 @@
     "sortOrder": 5
   },
   {
+    "id": "gw2--1525286447",
+    "title": "Play the Finale of Visions of Eternity Today with “Code of Creation”",
+    "url": "https://www.guildwars2.com/en/news/play-the-finale-of-visions-of-eternity-today-with-code-of-creation/",
+    "imageUrl": "",
+    "game": "Guild Wars 2",
+    "date": "by The Guild Wars 2 Team on September 15, 2026",
+    "sortOrder": 1
+  },
+  {
     "id": "gw2-1762356035",
     "title": "“Code of Creation” Concludes Visions of Eternity on September 15",
     "url": "https://www.guildwars2.com/en/news/code-of-creation-concludes-visions-of-eternity-on-september-15/",
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on September 08, 2026",
-    "sortOrder": 1
+    "sortOrder": 2
   },
   {
     "id": "gw2--651764226",
@@ -60,7 +69,7 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on August 25, 2026",
-    "sortOrder": 2
+    "sortOrder": 3
   },
   {
     "id": "gw2--2010283505",
@@ -69,7 +78,7 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on August 11, 2026",
-    "sortOrder": 3
+    "sortOrder": 4
   },
   {
     "id": "gw2-387003750",
@@ -78,15 +87,6 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on August 04, 2026",
-    "sortOrder": 4
-  },
-  {
-    "id": "gw2--458318218",
-    "title": "Share Your Best Screenshots in the Homestead Design Contest",
-    "url": "https://www.guildwars2.com/en/news/share-your-best-screenshots-in-the-homestead-design-contest/",
-    "imageUrl": "",
-    "game": "Guild Wars 2",
-    "date": "by The Guild Wars 2 Team on July 30, 2026",
     "sortOrder": 5
   }
 ]
