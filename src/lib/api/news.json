@@ -90,13 +90,31 @@
     "sortOrder": 10
   },
   {
+    "id": "gw2--1310337278",
+    "title": "Living World Seasons Are Now Included with Guild Wars 2 Expansions",
+    "url": "https://www.guildwars2.com/en/news/living-world-seasons-are-now-included-with-guild-wars-2-expansions/",
+    "imageUrl": "",
+    "game": "Guild Wars 2",
+    "date": "by The Guild Wars 2 Team on October 13, 2026",
+    "sortOrder": 1
+  },
+  {
+    "id": "gw2--1309826440",
+    "title": "Shadow of the Mad King 2026 Is Now Live!",
+    "url": "https://www.guildwars2.com/en/news/shadow-of-the-mad-king-2026-is-now-live/",
+    "imageUrl": "",
+    "game": "Guild Wars 2",
+    "date": "by The Guild Wars 2 Team on October 13, 2026",
+    "sortOrder": 2
+  },
+  {
     "id": "gw2-924889626",
     "title": "Support Team ArenaNet for Extra Life 2026",
     "url": "https://www.guildwars2.com/en/news/support-team-arenanet-for-extra-life-2026/",
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on October 06, 2026",
-    "sortOrder": 1
+    "sortOrder": 3
   },
   {
     "id": "gw2--2009506930",
@@ -105,7 +123,7 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on September 22, 2026",
-    "sortOrder": 2
+    "sortOrder": 4
   },
   {
     "id": "gw2--932689204",
@@ -114,24 +132,6 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on September 18, 2026",
-    "sortOrder": 3
-  },
-  {
-    "id": "gw2--1525286447",
-    "title": "Play the Finale of Visions of Eternity Today with “Code of Creation”",
-    "url": "https://www.guildwars2.com/en/news/play-the-finale-of-visions-of-eternity-today-with-code-of-creation/",
-    "imageUrl": "",
-    "game": "Guild Wars 2",
-    "date": "by The Guild Wars 2 Team on September 15, 2026",
-    "sortOrder": 4
-  },
-  {
-    "id": "gw2-1762356035",
-    "title": "“Code of Creation” Concludes Visions of Eternity on September 15",
-    "url": "https://www.guildwars2.com/en/news/code-of-creation-concludes-visions-of-eternity-on-september-15/",
-    "imageUrl": "",
-    "game": "Guild Wars 2",
-    "date": "by The Guild Wars 2 Team on September 08, 2026",
     "sortOrder": 5
   }
 ]
