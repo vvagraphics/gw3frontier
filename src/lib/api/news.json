@@ -90,6 +90,15 @@
     "sortOrder": 10
   },
   {
+    "id": "article-discover-wardens-watch",
+    "title": "Discover Warden's Watch",
+    "url": "./en/news/discover-wardens-watch",
+    "imageUrl": "https://d169gnos68toqd.cloudfront.net/moon-announce/attachments/fs5zghsr8s4p6rzznkebvt1j-gw3-wardens-watch-blog-1920x1080.full.jpg",
+    "game": "Guild Wars 3",
+    "date": "by Guild Wars 3 Team Article 11",
+    "sortOrder": 11
+  },
+  {
     "id": "gw2--1310337278",
     "title": "Living World Seasons Are Now Included with Guild Wars 2 Expansions",
     "url": "https://www.guildwars2.com/en/news/living-world-seasons-are-now-included-with-guild-wars-2-expansions/",
