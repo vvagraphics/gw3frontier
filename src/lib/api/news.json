@@ -99,13 +99,31 @@
     "sortOrder": 11
   },
   {
+    "id": "gw2-1659637484",
+    "title": "The New World vs. World Borderlands Map Beta Is Live!",
+    "url": "https://www.guildwars2.com/en/news/the-new-world-vs-world-borderlands-map-beta-is-live/",
+    "imageUrl": "",
+    "game": "Guild Wars 2",
+    "date": "by The Guild Wars 2 Team on November 10, 2026",
+    "sortOrder": 1
+  },
+  {
+    "id": "gw2-278277949",
+    "title": "Champion a Noble Cause with the Extra Life 2026 Donation Bundle",
+    "url": "https://www.guildwars2.com/en/news/champion-a-noble-cause-with-the-extra-life-2026-donation-bundle/",
+    "imageUrl": "",
+    "game": "Guild Wars 2",
+    "date": "by The Guild Wars 2 Team on November 10, 2026",
+    "sortOrder": 2
+  },
+  {
     "id": "gw2-1383298964",
     "title": "Announcing Guild Wars Afterlife—Prepurchase Available Now!",
     "url": "https://www.guildwars2.com/en/news/announcing-guild-wars-afterlife-prepurchase-available-now/",
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on November 03, 2026",
-    "sortOrder": 1
+    "sortOrder": 3
   },
   {
     "id": "gw2--1310337278",
@@ -114,7 +132,7 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on October 13, 2026",
-    "sortOrder": 2
+    "sortOrder": 4
   },
   {
     "id": "gw2--1309826440",
@@ -123,24 +141,6 @@
     "imageUrl": "",
     "game": "Guild Wars 2",
     "date": "by The Guild Wars 2 Team on October 13, 2026",
-    "sortOrder": 3
-  },
-  {
-    "id": "gw2-924889626",
-    "title": "Support Team ArenaNet for Extra Life 2026",
-    "url": "https://www.guildwars2.com/en/news/support-team-arenanet-for-extra-life-2026/",
-    "imageUrl": "",
-    "game": "Guild Wars 2",
-    "date": "by The Guild Wars 2 Team on October 06, 2026",
-    "sortOrder": 4
-  },
-  {
-    "id": "gw2--2009506930",
-    "title": "Play the New World vs. World Borderlands Map Beta on November 10",
-    "url": "https://www.guildwars2.com/en/news/play-the-new-world-vs-world-borderlands-map-beta-on-november-10/",
-    "imageUrl": "",
-    "game": "Guild Wars 2",
-    "date": "by The Guild Wars 2 Team on September 22, 2026",
     "sortOrder": 5
   }
 ]
